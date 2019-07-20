@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    
+    <declare-styleable name="ItemIndicatorView">
+        <attr name="indicator_above_dis" format="dimension"/>
+        <attr name="indicator_icon_id" format="reference"/>
+        <attr name="indicator_icon_size" format="dimension"/>
+        <attr name="indicator_line_color" format="color"/>
+        <attr name="indicator_margin" format="dimension"/>
+        <attr name="indicator_line_width" format="dimension"/>
+    </declare-styleable>
+
+</resources>

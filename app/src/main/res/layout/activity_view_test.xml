@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewTestActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.lzh.sample.ItemIndicatorView
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        app:indicator_above_dis="100dp"
+        app:indicator_line_color="@color/colorAccent"
+        app:indicator_icon_id="@mipmap/ic_launcher_round"
+        app:indicator_line_width="1dp"
+        app:indicator_icon_size="20dp"/>
+
+</LinearLayout>
