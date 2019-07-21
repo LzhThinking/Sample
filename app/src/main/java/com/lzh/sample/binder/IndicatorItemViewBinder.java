@@ -29,14 +29,19 @@ public class IndicatorItemViewBinder extends ItemViewBinder<IndicatroItemBean, I
     public void onBindViewHolder(@NotNull ViewHolder viewHolder, IndicatroItemBean indicatroItemBean) {
         viewHolder.tvTitle.setText(indicatroItemBean.title);
         viewHolder.tvContent.setText(indicatroItemBean.content);
+        if (viewHolder.getAdapterPosition() == getAdapterItems().size() - 1) {
+            viewHolder.bottomView.setVisibility(View.VISIBLE);
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvContent;
+        View bottomView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.text_title);
             tvContent = itemView.findViewById(R.id.text_content);
+            bottomView = itemView.findViewById(R.id.bottom_view);
         }
     }
 }

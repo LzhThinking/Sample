@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     class ClassViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv;
+
         public ClassViewHolder(@NonNull View itemView) {
             super(itemView);
             tv = itemView.findViewById(android.R.id.text1);

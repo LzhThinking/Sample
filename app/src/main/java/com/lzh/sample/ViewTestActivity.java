@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lzh.sample.binder.IndicatorItemViewBinder;
 import com.lzh.sample.entity.IndicatroItemBean;
+import com.lzh.sample.widgets.LottieButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class ViewTestActivity extends AppCompatActivity {
 
     @BindView(R.id.list_view)
     public RecyclerView mRecyclerView;
+    @BindView(R.id.lottie_button)
+    LottieButton mLottieButton;
     private List<Object> mItems;
     public MultiTypeAdapter mAdapter;
 
@@ -32,6 +35,10 @@ public class ViewTestActivity extends AppCompatActivity {
 
         getIndicatorBeans();
         mAdapter.notifyDataSetChanged();
+
+        mLottieButton.setText("确定");
+        mLottieButton.setLoadingText("Go!");
+        mLottieButton.setEnable(true);
     }
 
     private void initView() {
