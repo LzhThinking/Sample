@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".ViewTestActivity">
 
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photo_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"/>
+
     <com.lzh.sample.widgets.LottieButton
         android:id="@+id/lottie_button"
         android:layout_width="match_parent"
@@ -16,7 +22,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
 
     <com.lzh.sample.ItemIndicatorView
         android:layout_width="20dp"
