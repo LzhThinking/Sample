@@ -1,0 +1,31 @@
+[
+  {
+    "deployEnvCode": "CN",
+    "baseUrl": "https://aiot-rpc.aqara.cn/app/v1.0/lumi",
+    "fastlinkUrl": "aiot-rpc.aqara.com"
+  },
+  {
+    "deployEnvCode": "AP",
+    "baseUrl": "https://aiot-rpc-ap.aqara.com/app/v1.0/lumi",
+    "fastlinkUrl": "aiot-rpc-ap.aqara.com"
+  },
+  {
+    "deployEnvCode": "USA",
+    "baseUrl": "https://aiot-rpc-usa.aqara.com/app/v1.0/lumi",
+    "fastlinkUrl": "aiot-rpc-usa.aqara.com"
+  },
+  {
+    "deployEnvCode": "EU",
+    "baseUrl": "https://aiot-rpc-eu.aqara.com/app/v1.0/lumi",
+    "fastlinkUrl": "aiot-rpc-eu.aqara.com"
+  },
+  {
+    "deployEnvCode": "KR",
+    "baseUrl": "https://rpc-kr.aqara.com/app/v1.0/lumi",
+    "fastlinkUrl": "coap-kr.aqara.com",
+    "appIdentify": {
+      "appId": "94549908487478b220992a70",
+      "appKey": "euGhPe2rcmxwculATNj45eEtnd50zp0I"
+    }
+  }
+]

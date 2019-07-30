@@ -1,0 +1,1437 @@
+[
+  {
+    "areaCode": "004",
+    "countryCode": "AF",
+    "deployEnvCode": "AP",
+    "name": "阿富汗",
+    "shortPhone": "+93"
+  },
+  {
+    "areaCode": "012",
+    "countryCode": "DZ",
+    "deployEnvCode": "AP",
+    "name": "阿尔及利亚",
+    "shortPhone": "+213"
+  },
+  {
+    "areaCode": "031",
+    "countryCode": "AZ",
+    "deployEnvCode": "AP",
+    "name": "阿塞拜疆",
+    "shortPhone": "+994"
+  },
+  {
+    "areaCode": "036",
+    "countryCode": "CX",
+    "deployEnvCode": "AP",
+    "name": "澳大利亚",
+    "shortPhone": "+61"
+  },
+  {
+    "areaCode": "048",
+    "countryCode": "BH",
+    "deployEnvCode": "AP",
+    "name": "巴林",
+    "shortPhone": "+973"
+  },
+  {
+    "areaCode": "050",
+    "countryCode": "BD",
+    "deployEnvCode": "AP",
+    "name": "孟加拉",
+    "shortPhone": "+880"
+  },
+  {
+    "areaCode": "064",
+    "countryCode": "BT",
+    "deployEnvCode": "AP",
+    "name": "不丹",
+    "shortPhone": "+975"
+  },
+  {
+    "areaCode": "096",
+    "countryCode": "BN",
+    "deployEnvCode": "AP",
+    "name": "文莱",
+    "shortPhone": "+673"
+  },
+  {
+    "areaCode": "104",
+    "countryCode": "MM",
+    "deployEnvCode": "AP",
+    "name": "缅甸",
+    "shortPhone": "+95"
+  },
+  {
+    "areaCode": "116",
+    "countryCode": "KH",
+    "deployEnvCode": "AP",
+    "name": "柬埔寨",
+    "shortPhone": "+855"
+  },
+  {
+    "areaCode": "144",
+    "countryCode": "LK",
+    "deployEnvCode": "AP",
+    "name": "斯里兰卡",
+    "shortPhone": "+94"
+  },
+  {
+    "areaCode": "158",
+    "countryCode": "TW",
+    "deployEnvCode": "AP",
+    "name": "中国台湾",
+    "shortPhone": "+886"
+  },
+  {
+    "areaCode": "174",
+    "countryCode": "KM",
+    "deployEnvCode": "AP",
+    "name": "科摩罗",
+    "shortPhone": "+269"
+  },
+  {
+    "areaCode": "184",
+    "countryCode": "CK",
+    "deployEnvCode": "AP",
+    "name": "库克群岛",
+    "shortPhone": "+682"
+  },
+  {
+    "areaCode": "196",
+    "countryCode": "CY",
+    "deployEnvCode": "AP",
+    "name": "塞浦路斯",
+    "shortPhone": "+357"
+  },
+  {
+    "areaCode": "242",
+    "countryCode": "FJ",
+    "deployEnvCode": "AP",
+    "name": "斐济",
+    "shortPhone": "+679"
+  },
+  {
+    "areaCode": "262",
+    "countryCode": "DJ",
+    "deployEnvCode": "AP",
+    "name": "吉布提",
+    "shortPhone": "+253"
+  },
+  {
+    "areaCode": "296",
+    "countryCode": "KI",
+    "deployEnvCode": "AP",
+    "name": "基里巴斯",
+    "shortPhone": "+686"
+  },
+  {
+    "areaCode": "316",
+    "countryCode": "GU",
+    "deployEnvCode": "AP",
+    "name": "关岛",
+    "shortPhone": "+1-671"
+  },
+  {
+    "areaCode": "344",
+    "countryCode": "HK",
+    "deployEnvCode": "AP",
+    "name": "中国香港",
+    "shortPhone": "+852"
+  },
+  {
+    "areaCode": "356",
+    "countryCode": "IN",
+    "deployEnvCode": "AP",
+    "name": "印度",
+    "shortPhone": "+91"
+  },
+  {
+    "areaCode": "360",
+    "countryCode": "ID",
+    "deployEnvCode": "AP",
+    "name": "印度尼西亚",
+    "shortPhone": "+62"
+  },
+  {
+    "areaCode": "364",
+    "countryCode": "IR",
+    "deployEnvCode": "AP",
+    "name": "伊朗",
+    "shortPhone": "+98"
+  },
+  {
+    "areaCode": "368",
+    "countryCode": "IQ",
+    "deployEnvCode": "AP",
+    "name": "伊拉克",
+    "shortPhone": "+964"
+  },
+  {
+    "areaCode": "374",
+    "countryCode": "PS",
+    "deployEnvCode": "AP",
+    "name": "巴勒斯坦",
+    "shortPhone": "+970"
+  },
+  {
+    "areaCode": "376",
+    "countryCode": "IL",
+    "deployEnvCode": "AP",
+    "name": "以色列",
+    "shortPhone": "+972"
+  },
+  {
+    "areaCode": "392",
+    "countryCode": "JP",
+    "deployEnvCode": "AP",
+    "name": "日本",
+    "shortPhone": "+81"
+  },
+  {
+    "areaCode": "398",
+    "countryCode": "RU",
+    "deployEnvCode": "AP",
+    "name": "哈萨克斯坦",
+    "shortPhone": "+7"
+  },
+  {
+    "areaCode": "400",
+    "countryCode": "JO",
+    "deployEnvCode": "AP",
+    "name": "约旦",
+    "shortPhone": "+962"
+  },
+  {
+    "areaCode": "408",
+    "countryCode": "KP",
+    "deployEnvCode": "AP",
+    "name": "朝鲜",
+    "shortPhone": "+850"
+  },
+  {
+    "areaCode": "410",
+    "countryCode": "KR",
+    "deployEnvCode": "AP",
+    "name": "韩国",
+    "shortPhone": "+82"
+  },
+  {
+    "areaCode": "414",
+    "countryCode": "KW",
+    "deployEnvCode": "AP",
+    "name": "科威特",
+    "shortPhone": "+965"
+  },
+  {
+    "areaCode": "417",
+    "countryCode": "KG",
+    "deployEnvCode": "AP",
+    "name": "吉尔吉斯斯坦",
+    "shortPhone": "+996"
+  },
+  {
+    "areaCode": "418",
+    "countryCode": "LA",
+    "deployEnvCode": "AP",
+    "name": "老挝",
+    "shortPhone": "+856"
+  },
+  {
+    "areaCode": "422",
+    "countryCode": "LB",
+    "deployEnvCode": "AP",
+    "name": "黎巴嫩",
+    "shortPhone": "+961"
+  },
+  {
+    "areaCode": "434",
+    "countryCode": "LY",
+    "deployEnvCode": "AP",
+    "name": "利比亚",
+    "shortPhone": "+218"
+  },
+  {
+    "areaCode": "446",
+    "countryCode": "MO",
+    "deployEnvCode": "AP",
+    "name": "中国澳门",
+    "shortPhone": "+853"
+  },
+  {
+    "areaCode": "458",
+    "countryCode": "MY",
+    "deployEnvCode": "AP",
+    "name": "马来西亚",
+    "shortPhone": "+60"
+  },
+  {
+    "areaCode": "462",
+    "countryCode": "MV",
+    "deployEnvCode": "AP",
+    "name": "马尔代夫",
+    "shortPhone": "+960"
+  },
+  {
+    "areaCode": "478",
+    "countryCode": "MU",
+    "deployEnvCode": "AP",
+    "name": "毛里塔尼亚",
+    "shortPhone": "+222"
+  },
+  {
+    "areaCode": "496",
+    "countryCode": "MN",
+    "deployEnvCode": "AP",
+    "name": "蒙古",
+    "shortPhone": "+976"
+  },
+  {
+    "areaCode": "499",
+    "countryCode": "ME",
+    "deployEnvCode": "AP",
+    "name": "黑山",
+    "shortPhone": "+382"
+  },
+  {
+    "areaCode": "504",
+    "countryCode": "MA",
+    "deployEnvCode": "AP",
+    "name": "摩洛哥",
+    "shortPhone": "+212"
+  },
+  {
+    "areaCode": "512",
+    "countryCode": "OM",
+    "deployEnvCode": "AP",
+    "name": "阿曼",
+    "shortPhone": "+968"
+  },
+  {
+    "areaCode": "520",
+    "countryCode": "NR",
+    "deployEnvCode": "AP",
+    "name": "瑙鲁",
+    "shortPhone": "+674"
+  },
+  {
+    "areaCode": "524",
+    "countryCode": "NP",
+    "deployEnvCode": "AP",
+    "name": "尼泊尔",
+    "shortPhone": "+977"
+  },
+  {
+    "areaCode": "548",
+    "countryCode": "VU",
+    "deployEnvCode": "AP",
+    "name": "瓦努阿图",
+    "shortPhone": "+678"
+  },
+  {
+    "areaCode": "554",
+    "countryCode": "PN",
+    "deployEnvCode": "AP",
+    "name": "新西兰",
+    "shortPhone": "+64"
+  },
+  {
+    "areaCode": "570",
+    "countryCode": "NU",
+    "deployEnvCode": "AP",
+    "name": "纽埃",
+    "shortPhone": "+683"
+  },
+  {
+    "areaCode": "585",
+    "countryCode": "PW",
+    "deployEnvCode": "AP",
+    "name": "帕劳",
+    "shortPhone": "+680"
+  },
+  {
+    "areaCode": "586",
+    "countryCode": "PK",
+    "deployEnvCode": "AP",
+    "name": "巴基斯坦",
+    "shortPhone": "+92"
+  },
+  {
+    "areaCode": "598",
+    "countryCode": "PG",
+    "deployEnvCode": "AP",
+    "name": "巴布亚新几内亚",
+    "shortPhone": "+675"
+  },
+  {
+    "areaCode": "608",
+    "countryCode": "PH",
+    "deployEnvCode": "AP",
+    "name": "菲律宾",
+    "shortPhone": "+63"
+  },
+  {
+    "areaCode": "626",
+    "countryCode": "TL",
+    "deployEnvCode": "AP",
+    "name": "东帝汶",
+    "shortPhone": "+670"
+  },
+  {
+    "areaCode": "634",
+    "countryCode": "QA",
+    "deployEnvCode": "AP",
+    "name": "卡塔尔",
+    "shortPhone": "+974"
+  },
+  {
+    "areaCode": "682",
+    "countryCode": "SA",
+    "deployEnvCode": "AP",
+    "name": "沙特阿拉伯",
+    "shortPhone": "+966"
+  },
+  {
+    "areaCode": "702",
+    "countryCode": "SG",
+    "deployEnvCode": "AP",
+    "name": "新加坡",
+    "shortPhone": "+65"
+  },
+  {
+    "areaCode": "704",
+    "countryCode": "VN",
+    "deployEnvCode": "AP",
+    "name": "越南",
+    "shortPhone": "+84"
+  },
+  {
+    "areaCode": "706",
+    "countryCode": "SO",
+    "deployEnvCode": "AP",
+    "name": "索马里",
+    "shortPhone": "+252"
+  },
+  {
+    "areaCode": "729",
+    "countryCode": "SD",
+    "deployEnvCode": "AP",
+    "name": "苏丹",
+    "shortPhone": "+249"
+  },
+  {
+    "areaCode": "760",
+    "countryCode": "SY",
+    "deployEnvCode": "AP",
+    "name": "叙利亚",
+    "shortPhone": "+963"
+  },
+  {
+    "areaCode": "762",
+    "countryCode": "TJ",
+    "deployEnvCode": "AP",
+    "name": "塔吉克斯坦",
+    "shortPhone": "+992"
+  },
+  {
+    "areaCode": "764",
+    "countryCode": "TH",
+    "deployEnvCode": "AP",
+    "name": "泰国",
+    "shortPhone": "+66"
+  },
+  {
+    "areaCode": "776",
+    "countryCode": "TO",
+    "deployEnvCode": "AP",
+    "name": "汤加",
+    "shortPhone": "+676"
+  },
+  {
+    "areaCode": "784",
+    "countryCode": "AE",
+    "deployEnvCode": "AP",
+    "name": "阿联酋",
+    "shortPhone": "+971"
+  },
+  {
+    "areaCode": "788",
+    "countryCode": "TN",
+    "deployEnvCode": "AP",
+    "name": "突尼斯",
+    "shortPhone": "+216"
+  },
+  {
+    "areaCode": "792",
+    "countryCode": "TR",
+    "deployEnvCode": "AP",
+    "name": "土耳其",
+    "shortPhone": "+90"
+  },
+  {
+    "areaCode": "795",
+    "countryCode": "TM",
+    "deployEnvCode": "AP",
+    "name": "土库曼斯坦",
+    "shortPhone": "+993"
+  },
+  {
+    "areaCode": "798",
+    "countryCode": "TV",
+    "deployEnvCode": "AP",
+    "name": "图瓦卢",
+    "shortPhone": "+688"
+  },
+  {
+    "areaCode": "860",
+    "countryCode": "UZ",
+    "deployEnvCode": "AP",
+    "name": "乌兹别克斯坦",
+    "shortPhone": "+998"
+  },
+  {
+    "areaCode": "882",
+    "countryCode": "WS",
+    "deployEnvCode": "AP",
+    "name": "萨摩亚",
+    "shortPhone": "+685"
+  },
+  {
+    "areaCode": "887",
+    "countryCode": "YE",
+    "deployEnvCode": "AP",
+    "name": "也门",
+    "shortPhone": "+967"
+  },
+  {
+    "areaCode": "156",
+    "countryCode": "CN",
+    "deployEnvCode": "CN",
+    "name": "中国大陆",
+    "shortPhone": "+86"
+  },
+  {
+    "areaCode": "008",
+    "countryCode": "AN",
+    "deployEnvCode": "EU",
+    "name": "阿尔巴尼亚",
+    "shortPhone": "+355"
+  },
+  {
+    "areaCode": "020",
+    "countryCode": "AD",
+    "deployEnvCode": "EU",
+    "name": "安道尔",
+    "shortPhone": "+376"
+  },
+  {
+    "areaCode": "024",
+    "countryCode": "AO",
+    "deployEnvCode": "EU",
+    "name": "安哥拉",
+    "shortPhone": "+244"
+  },
+  {
+    "areaCode": "040",
+    "countryCode": "AT",
+    "deployEnvCode": "EU",
+    "name": "奥地利",
+    "shortPhone": "+43"
+  },
+  {
+    "areaCode": "051",
+    "countryCode": "AM",
+    "deployEnvCode": "EU",
+    "name": "亚美尼亚",
+    "shortPhone": "+374"
+  },
+  {
+    "areaCode": "056",
+    "countryCode": "BE",
+    "deployEnvCode": "EU",
+    "name": "比利时",
+    "shortPhone": "+32"
+  },
+  {
+    "areaCode": "070",
+    "countryCode": "BA",
+    "deployEnvCode": "EU",
+    "name": "波斯尼亚和黑塞哥维那",
+    "shortPhone": "+387"
+  },
+  {
+    "areaCode": "072",
+    "countryCode": "BW",
+    "deployEnvCode": "EU",
+    "name": "博茨瓦纳",
+    "shortPhone": "+267"
+  },
+  {
+    "areaCode": "100",
+    "countryCode": "BG",
+    "deployEnvCode": "EU",
+    "name": "保加利亚",
+    "shortPhone": "+359"
+  },
+  {
+    "areaCode": "108",
+    "countryCode": "BI",
+    "deployEnvCode": "EU",
+    "name": "布隆迪",
+    "shortPhone": "+257"
+  },
+  {
+    "areaCode": "112",
+    "countryCode": "BY",
+    "deployEnvCode": "EU",
+    "name": "白俄罗斯",
+    "shortPhone": "+375"
+  },
+  {
+    "areaCode": "120",
+    "countryCode": "CM",
+    "deployEnvCode": "EU",
+    "name": "喀麦隆",
+    "shortPhone": "+237"
+  },
+  {
+    "areaCode": "132",
+    "countryCode": "CV",
+    "deployEnvCode": "EU",
+    "name": "佛得角",
+    "shortPhone": "+238"
+  },
+  {
+    "areaCode": "140",
+    "countryCode": "CF",
+    "deployEnvCode": "EU",
+    "name": "中非",
+    "shortPhone": "+236"
+  },
+  {
+    "areaCode": "148",
+    "countryCode": "TD",
+    "deployEnvCode": "EU",
+    "name": "乍得",
+    "shortPhone": "+235"
+  },
+  {
+    "areaCode": "175",
+    "countryCode": "YT",
+    "deployEnvCode": "EU",
+    "name": "马约特",
+    "shortPhone": "+262"
+  },
+  {
+    "areaCode": "178",
+    "countryCode": "CG",
+    "deployEnvCode": "EU",
+    "name": "刚果（布）",
+    "shortPhone": "+242"
+  },
+  {
+    "areaCode": "180",
+    "countryCode": "CD",
+    "deployEnvCode": "EU",
+    "name": "刚果（金）",
+    "shortPhone": "+243"
+  },
+  {
+    "areaCode": "191",
+    "countryCode": "HR",
+    "deployEnvCode": "EU",
+    "name": "克罗地亚",
+    "shortPhone": "+385"
+  },
+  {
+    "areaCode": "203",
+    "countryCode": "CZ",
+    "deployEnvCode": "EU",
+    "name": "捷克",
+    "shortPhone": "+420"
+  },
+  {
+    "areaCode": "204",
+    "countryCode": "BJ",
+    "deployEnvCode": "EU",
+    "name": "贝宁",
+    "shortPhone": "+229"
+  },
+  {
+    "areaCode": "208",
+    "countryCode": "DK",
+    "deployEnvCode": "EU",
+    "name": "丹麦",
+    "shortPhone": "+45"
+  },
+  {
+    "areaCode": "226",
+    "countryCode": "GQ",
+    "deployEnvCode": "EU",
+    "name": "赤道几内亚",
+    "shortPhone": "+240"
+  },
+  {
+    "areaCode": "231",
+    "countryCode": "ET",
+    "deployEnvCode": "EU",
+    "name": "埃塞俄比亚",
+    "shortPhone": "+251"
+  },
+  {
+    "areaCode": "232",
+    "countryCode": "ER",
+    "deployEnvCode": "EU",
+    "name": "厄立特里亚",
+    "shortPhone": "+291"
+  },
+  {
+    "areaCode": "233",
+    "countryCode": "EE",
+    "deployEnvCode": "EU",
+    "name": "爱沙尼亚",
+    "shortPhone": "+372"
+  },
+  {
+    "areaCode": "246",
+    "countryCode": "FI",
+    "deployEnvCode": "EU",
+    "name": "芬兰",
+    "shortPhone": "+358"
+  },
+  {
+    "areaCode": "250",
+    "countryCode": "FR",
+    "deployEnvCode": "EU",
+    "name": "法国",
+    "shortPhone": "+33"
+  },
+  {
+    "areaCode": "266",
+    "countryCode": "GA",
+    "deployEnvCode": "EU",
+    "name": "加蓬",
+    "shortPhone": "+241"
+  },
+  {
+    "areaCode": "268",
+    "countryCode": "GE",
+    "deployEnvCode": "EU",
+    "name": "格鲁吉亚",
+    "shortPhone": "+995"
+  },
+  {
+    "areaCode": "270",
+    "countryCode": "GM",
+    "deployEnvCode": "EU",
+    "name": "冈比亚",
+    "shortPhone": "+220"
+  },
+  {
+    "areaCode": "276",
+    "countryCode": "DE",
+    "deployEnvCode": "EU",
+    "name": "德国",
+    "shortPhone": "+49"
+  },
+  {
+    "areaCode": "288",
+    "countryCode": "GH",
+    "deployEnvCode": "EU",
+    "name": "加纳",
+    "shortPhone": "+233"
+  },
+  {
+    "areaCode": "292",
+    "countryCode": "GI",
+    "deployEnvCode": "EU",
+    "name": "直布罗陀",
+    "shortPhone": "+350"
+  },
+  {
+    "areaCode": "300",
+    "countryCode": "GR",
+    "deployEnvCode": "EU",
+    "name": "希腊",
+    "shortPhone": "+30"
+  },
+  {
+    "areaCode": "304",
+    "countryCode": "GL",
+    "deployEnvCode": "EU",
+    "name": "格陵兰",
+    "shortPhone": "+299"
+  },
+  {
+    "areaCode": "324",
+    "countryCode": "GN",
+    "deployEnvCode": "EU",
+    "name": "几内亚",
+    "shortPhone": "+224"
+  },
+  {
+    "areaCode": "336",
+    "countryCode": "VA",
+    "deployEnvCode": "EU",
+    "name": "梵蒂冈",
+    "shortPhone": "+379"
+  },
+  {
+    "areaCode": "348",
+    "countryCode": "HU",
+    "deployEnvCode": "EU",
+    "name": "匈牙利",
+    "shortPhone": "+36"
+  },
+  {
+    "areaCode": "352",
+    "countryCode": "IS",
+    "deployEnvCode": "EU",
+    "name": "冰岛",
+    "shortPhone": "+354"
+  },
+  {
+    "areaCode": "372",
+    "countryCode": "IE",
+    "deployEnvCode": "EU",
+    "name": "爱尔兰",
+    "shortPhone": "+353"
+  },
+  {
+    "areaCode": "380",
+    "countryCode": "IT",
+    "deployEnvCode": "EU",
+    "name": "意大利",
+    "shortPhone": "+39"
+  },
+  {
+    "areaCode": "384",
+    "countryCode": "CI",
+    "deployEnvCode": "EU",
+    "name": "科特迪瓦",
+    "shortPhone": "+225"
+  },
+  {
+    "areaCode": "404",
+    "countryCode": "KE",
+    "deployEnvCode": "EU",
+    "name": "肯尼亚",
+    "shortPhone": "+254"
+  },
+  {
+    "areaCode": "426",
+    "countryCode": "LS",
+    "deployEnvCode": "EU",
+    "name": "莱索托",
+    "shortPhone": "+266"
+  },
+  {
+    "areaCode": "428",
+    "countryCode": "LV",
+    "deployEnvCode": "EU",
+    "name": "拉脱维亚",
+    "shortPhone": "+371"
+  },
+  {
+    "areaCode": "430",
+    "countryCode": "Liberia",
+    "deployEnvCode": "EU",
+    "name": "利比里亚",
+    "shortPhone": "+231"
+  },
+  {
+    "areaCode": "438",
+    "countryCode": "LI",
+    "deployEnvCode": "EU",
+    "name": "列支敦士登",
+    "shortPhone": "+423"
+  },
+  {
+    "areaCode": "440",
+    "countryCode": "LT",
+    "deployEnvCode": "EU",
+    "name": "立陶宛",
+    "shortPhone": "+370"
+  },
+  {
+    "areaCode": "442",
+    "countryCode": "LU",
+    "deployEnvCode": "EU",
+    "name": "卢森堡",
+    "shortPhone": "+352"
+  },
+  {
+    "areaCode": "450",
+    "countryCode": "MG",
+    "deployEnvCode": "EU",
+    "name": "马达加斯加",
+    "shortPhone": "+261"
+  },
+  {
+    "areaCode": "454",
+    "countryCode": "MW",
+    "deployEnvCode": "EU",
+    "name": "马拉维",
+    "shortPhone": "+265"
+  },
+  {
+    "areaCode": "466",
+    "countryCode": "ML",
+    "deployEnvCode": "EU",
+    "name": "马里",
+    "shortPhone": "+223"
+  },
+  {
+    "areaCode": "470",
+    "countryCode": "MT",
+    "deployEnvCode": "EU",
+    "name": "马耳他",
+    "shortPhone": "+356"
+  },
+  {
+    "areaCode": "480",
+    "countryCode": "MU",
+    "deployEnvCode": "EU",
+    "name": "毛里求斯",
+    "shortPhone": "+230"
+  },
+  {
+    "areaCode": "492",
+    "countryCode": "MC",
+    "deployEnvCode": "EU",
+    "name": "摩纳哥",
+    "shortPhone": "+377"
+  },
+  {
+    "areaCode": "498",
+    "countryCode": "MD",
+    "deployEnvCode": "EU",
+    "name": "摩尔多瓦",
+    "shortPhone": "+373"
+  },
+  {
+    "areaCode": "508",
+    "countryCode": "MZ",
+    "deployEnvCode": "EU",
+    "name": "莫桑比克",
+    "shortPhone": "+258"
+  },
+  {
+    "areaCode": "516",
+    "countryCode": "NA",
+    "deployEnvCode": "EU",
+    "name": "纳米比亚",
+    "shortPhone": "+264"
+  },
+  {
+    "areaCode": "528",
+    "countryCode": "NL",
+    "deployEnvCode": "EU",
+    "name": "荷兰",
+    "shortPhone": "+31"
+  },
+  {
+    "areaCode": "562",
+    "countryCode": "NE",
+    "deployEnvCode": "EU",
+    "name": "尼日尔",
+    "shortPhone": "+227"
+  },
+  {
+    "areaCode": "566",
+    "countryCode": "NG",
+    "deployEnvCode": "EU",
+    "name": "尼日利亚",
+    "shortPhone": "+234"
+  },
+  {
+    "areaCode": "578",
+    "countryCode": "SJ",
+    "deployEnvCode": "EU",
+    "name": "挪威",
+    "shortPhone": "+47"
+  },
+  {
+    "areaCode": "616",
+    "countryCode": "PL",
+    "deployEnvCode": "EU",
+    "name": "波兰",
+    "shortPhone": "+48"
+  },
+  {
+    "areaCode": "620",
+    "countryCode": "PT",
+    "deployEnvCode": "EU",
+    "name": "葡萄牙",
+    "shortPhone": "+351"
+  },
+  {
+    "areaCode": "624",
+    "countryCode": "GW",
+    "deployEnvCode": "EU",
+    "name": "几内亚比绍",
+    "shortPhone": "+245"
+  },
+  {
+    "areaCode": "638",
+    "countryCode": "YT",
+    "deployEnvCode": "EU",
+    "name": "留尼汪",
+    "shortPhone": "+262"
+  },
+  {
+    "areaCode": "642",
+    "countryCode": "RO",
+    "deployEnvCode": "EU",
+    "name": "罗马尼亚",
+    "shortPhone": "+40"
+  },
+  {
+    "areaCode": "643",
+    "countryCode": "RU",
+    "deployEnvCode": "EU",
+    "name": "俄罗斯",
+    "shortPhone": "+7"
+  },
+  {
+    "areaCode": "646",
+    "countryCode": "RW",
+    "deployEnvCode": "EU",
+    "name": "卢旺达",
+    "shortPhone": "+250"
+  },
+  {
+    "areaCode": "674",
+    "countryCode": "SM",
+    "deployEnvCode": "EU",
+    "name": "圣马力诺",
+    "shortPhone": "+378"
+  },
+  {
+    "areaCode": "678",
+    "countryCode": "ST",
+    "deployEnvCode": "EU",
+    "name": "圣多美和普林西比",
+    "shortPhone": "+239"
+  },
+  {
+    "areaCode": "686",
+    "countryCode": "SN",
+    "deployEnvCode": "EU",
+    "name": "塞内加尔",
+    "shortPhone": "+221"
+  },
+  {
+    "areaCode": "688",
+    "countryCode": "RS",
+    "deployEnvCode": "EU",
+    "name": "塞尔维亚",
+    "shortPhone": "+381"
+  },
+  {
+    "areaCode": "690",
+    "countryCode": "SC",
+    "deployEnvCode": "EU",
+    "name": "塞舌尔",
+    "shortPhone": "+248"
+  },
+  {
+    "areaCode": "694",
+    "countryCode": "SL",
+    "deployEnvCode": "EU",
+    "name": "塞拉利昂",
+    "shortPhone": "+232"
+  },
+  {
+    "areaCode": "703",
+    "countryCode": "SK",
+    "deployEnvCode": "EU",
+    "name": "斯洛伐克",
+    "shortPhone": "+421"
+  },
+  {
+    "areaCode": "705",
+    "countryCode": "SI",
+    "deployEnvCode": "EU",
+    "name": "斯洛文尼亚",
+    "shortPhone": "+386"
+  },
+  {
+    "areaCode": "710",
+    "countryCode": "ZA",
+    "deployEnvCode": "EU",
+    "name": "南非",
+    "shortPhone": "+27"
+  },
+  {
+    "areaCode": "716",
+    "countryCode": "ZW",
+    "deployEnvCode": "EU",
+    "name": "津巴布韦",
+    "shortPhone": "+263"
+  },
+  {
+    "areaCode": "724",
+    "countryCode": "ES",
+    "deployEnvCode": "EU",
+    "name": "西班牙",
+    "shortPhone": "+34"
+  },
+  {
+    "areaCode": "728",
+    "countryCode": "SS",
+    "deployEnvCode": "EU",
+    "name": "南苏丹",
+    "shortPhone": "+211"
+  },
+  {
+    "areaCode": "748",
+    "countryCode": "SZ",
+    "deployEnvCode": "EU",
+    "name": "斯威士兰",
+    "shortPhone": "+268"
+  },
+  {
+    "areaCode": "752",
+    "countryCode": "SE",
+    "deployEnvCode": "EU",
+    "name": "瑞典",
+    "shortPhone": "+46"
+  },
+  {
+    "areaCode": "756",
+    "countryCode": "CH",
+    "deployEnvCode": "EU",
+    "name": "瑞士",
+    "shortPhone": "+41"
+  },
+  {
+    "areaCode": "768",
+    "countryCode": "TG",
+    "deployEnvCode": "EU",
+    "name": "多哥",
+    "shortPhone": "+228"
+  },
+  {
+    "areaCode": "800",
+    "countryCode": "UG",
+    "deployEnvCode": "EU",
+    "name": "乌干达",
+    "shortPhone": "+256"
+  },
+  {
+    "areaCode": "804",
+    "countryCode": "UA",
+    "deployEnvCode": "EU",
+    "name": "乌克兰",
+    "shortPhone": "+380"
+  },
+  {
+    "areaCode": "807",
+    "countryCode": "MK",
+    "deployEnvCode": "EU",
+    "name": "马其顿",
+    "shortPhone": "+389"
+  },
+  {
+    "areaCode": "818",
+    "countryCode": "EG",
+    "deployEnvCode": "EU",
+    "name": "埃及",
+    "shortPhone": "+20"
+  },
+  {
+    "areaCode": "826",
+    "countryCode": "GB",
+    "deployEnvCode": "EU",
+    "name": "英国",
+    "shortPhone": "+44"
+  },
+  {
+    "areaCode": "834",
+    "countryCode": "TZ",
+    "deployEnvCode": "EU",
+    "name": "坦桑尼亚",
+    "shortPhone": "+255"
+  },
+  {
+    "areaCode": "854",
+    "countryCode": "BF",
+    "deployEnvCode": "EU",
+    "name": "布基纳法索",
+    "shortPhone": "+226"
+  },
+  {
+    "areaCode": "894",
+    "countryCode": "ZM",
+    "deployEnvCode": "EU",
+    "name": "赞比亚",
+    "shortPhone": "+260"
+  },
+  {
+    "areaCode": "028",
+    "countryCode": "AG",
+    "deployEnvCode": "USA",
+    "name": "安提瓜和巴布达",
+    "shortPhone": "+1-268"
+  },
+  {
+    "areaCode": "032",
+    "countryCode": "AR",
+    "deployEnvCode": "USA",
+    "name": "阿根廷",
+    "shortPhone": "+54"
+  },
+  {
+    "areaCode": "044",
+    "countryCode": "BS",
+    "deployEnvCode": "USA",
+    "name": "巴哈马",
+    "shortPhone": "+1-242"
+  },
+  {
+    "areaCode": "052",
+    "countryCode": "BB",
+    "deployEnvCode": "USA",
+    "name": "巴巴多斯",
+    "shortPhone": "+1-246"
+  },
+  {
+    "areaCode": "068",
+    "countryCode": "BO",
+    "deployEnvCode": "USA",
+    "name": "玻利维亚",
+    "shortPhone": "+591"
+  },
+  {
+    "areaCode": "076",
+    "countryCode": "BR",
+    "deployEnvCode": "USA",
+    "name": "巴西",
+    "shortPhone": "+55"
+  },
+  {
+    "areaCode": "084",
+    "countryCode": "BZ",
+    "deployEnvCode": "USA",
+    "name": "伯利兹",
+    "shortPhone": "+501"
+  },
+  {
+    "areaCode": "124",
+    "countryCode": "US",
+    "deployEnvCode": "USA",
+    "name": "加拿大",
+    "shortPhone": "+1"
+  },
+  {
+    "areaCode": "152",
+    "countryCode": "CL",
+    "deployEnvCode": "USA",
+    "name": "智利",
+    "shortPhone": "+56"
+  },
+  {
+    "areaCode": "170",
+    "countryCode": "CO",
+    "deployEnvCode": "USA",
+    "name": "哥伦比亚",
+    "shortPhone": "+57"
+  },
+  {
+    "areaCode": "188",
+    "countryCode": "CR",
+    "deployEnvCode": "USA",
+    "name": "哥斯达黎加",
+    "shortPhone": "+506"
+  },
+  {
+    "areaCode": "192",
+    "countryCode": "CU",
+    "deployEnvCode": "USA",
+    "name": "古巴",
+    "shortPhone": "+53"
+  },
+  {
+    "areaCode": "212",
+    "countryCode": "DMA",
+    "deployEnvCode": "USA",
+    "name": "多米尼克",
+    "shortPhone": "+1767"
+  },
+  {
+    "areaCode": "214",
+    "countryCode": "DM",
+    "deployEnvCode": "USA",
+    "name": "多米尼加",
+    "shortPhone": "+1-767"
+  },
+  {
+    "areaCode": "218",
+    "countryCode": "EC",
+    "deployEnvCode": "USA",
+    "name": "厄瓜多尔",
+    "shortPhone": "+593"
+  },
+  {
+    "areaCode": "222",
+    "countryCode": "SV",
+    "deployEnvCode": "USA",
+    "name": "萨尔瓦多",
+    "shortPhone": "+503"
+  },
+  {
+    "areaCode": "308",
+    "countryCode": "GD",
+    "deployEnvCode": "USA",
+    "name": "格林纳达",
+    "shortPhone": "+1-473"
+  },
+  {
+    "areaCode": "312",
+    "countryCode": "MF",
+    "deployEnvCode": "USA",
+    "name": "瓜德罗普",
+    "shortPhone": "+590"
+  },
+  {
+    "areaCode": "320",
+    "countryCode": "GT",
+    "deployEnvCode": "USA",
+    "name": "危地马拉",
+    "shortPhone": "+502"
+  },
+  {
+    "areaCode": "328",
+    "countryCode": "GY",
+    "deployEnvCode": "USA",
+    "name": "圭亚那",
+    "shortPhone": "+592"
+  },
+  {
+    "areaCode": "332",
+    "countryCode": "HT",
+    "deployEnvCode": "USA",
+    "name": "海地",
+    "shortPhone": "+509"
+  },
+  {
+    "areaCode": "340",
+    "countryCode": "HN",
+    "deployEnvCode": "USA",
+    "name": "洪都拉斯",
+    "shortPhone": "+504"
+  },
+  {
+    "areaCode": "388",
+    "countryCode": "JM",
+    "deployEnvCode": "USA",
+    "name": "牙买加",
+    "shortPhone": "+1-876"
+  },
+  {
+    "areaCode": "474",
+    "countryCode": "MR",
+    "deployEnvCode": "USA",
+    "name": "马提尼克",
+    "shortPhone": "+596"
+  },
+  {
+    "areaCode": "484",
+    "countryCode": "MX",
+    "deployEnvCode": "USA",
+    "name": "墨西哥",
+    "shortPhone": "+52"
+  },
+  {
+    "areaCode": "533",
+    "countryCode": "AW",
+    "deployEnvCode": "USA",
+    "name": "阿鲁巴",
+    "shortPhone": "+297"
+  },
+  {
+    "areaCode": "558",
+    "countryCode": "NI",
+    "deployEnvCode": "USA",
+    "name": "尼加拉瓜",
+    "shortPhone": "+505"
+  },
+  {
+    "areaCode": "591",
+    "countryCode": "PA",
+    "deployEnvCode": "USA",
+    "name": "巴拿马",
+    "shortPhone": "+507"
+  },
+  {
+    "areaCode": "600",
+    "countryCode": "PY",
+    "deployEnvCode": "USA",
+    "name": "巴拉圭",
+    "shortPhone": "+595"
+  },
+  {
+    "areaCode": "604",
+    "countryCode": "PE",
+    "deployEnvCode": "USA",
+    "name": "秘鲁",
+    "shortPhone": "+51"
+  },
+  {
+    "areaCode": "630",
+    "countryCode": "PR",
+    "deployEnvCode": "USA",
+    "name": "波多黎各",
+    "shortPhone": "+1-939"
+  },
+  {
+    "areaCode": "659",
+    "countryCode": "KN",
+    "deployEnvCode": "USA",
+    "name": "圣基茨和尼维斯",
+    "shortPhone": "+1-869"
+  },
+  {
+    "areaCode": "662",
+    "countryCode": "LC",
+    "deployEnvCode": "USA",
+    "name": "圣卢西亚",
+    "shortPhone": "+1785"
+  },
+  {
+    "areaCode": "740",
+    "countryCode": "SR",
+    "deployEnvCode": "USA",
+    "name": "苏里南",
+    "shortPhone": "+597"
+  },
+  {
+    "areaCode": "780",
+    "countryCode": "TT",
+    "deployEnvCode": "USA",
+    "name": "特立尼达和多巴哥",
+    "shortPhone": "+1-868"
+  },
+  {
+    "areaCode": "840",
+    "countryCode": "US",
+    "deployEnvCode": "USA",
+    "name": "美国",
+    "shortPhone": "+1"
+  },
+  {
+    "areaCode": "858",
+    "countryCode": "UY",
+    "deployEnvCode": "USA",
+    "name": "乌拉圭",
+    "shortPhone": "+598"
+  },
+  {
+    "areaCode": "862",
+    "countryCode": "VE",
+    "deployEnvCode": "USA",
+    "name": "委内瑞拉",
+    "shortPhone": "+58"
+  }
+]

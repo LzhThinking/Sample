@@ -46,7 +46,9 @@ public class ItemIndicatorView extends View {
 
         int destTop = (int) (aboveDis + indicatorMargin);
         int dextLeft = (int) ((width - iconSize) / 2);
-        canvas.drawBitmap(iconBitmap, new Rect(0, 0, iconBitmap.getWidth(), iconBitmap.getHeight()), new Rect(dextLeft, destTop, (int)(dextLeft + iconSize), (int)(destTop + iconSize)), mPaint);
+        if (iconBitmap != null) {
+            canvas.drawBitmap(iconBitmap, new Rect(0, 0, iconBitmap.getWidth(), iconBitmap.getHeight()), new Rect(dextLeft, destTop, (int)(dextLeft + iconSize), (int)(destTop + iconSize)), mPaint);
+        }
 
         canvas.drawLine(width/2,destTop + iconSize + indicatorMargin, width/2, height, mPaint);
     }

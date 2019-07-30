@@ -1,13 +1,25 @@
 package com.lzh.sample;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.lzh.sample.binder.IndicatorItemViewBinder;
 import com.lzh.sample.entity.IndicatroItemBean;
 import com.lzh.sample.viewtest.RemarkAdapter;
@@ -27,8 +39,10 @@ public class ViewTestActivity extends AppCompatActivity {
     public RecyclerView mRecyclerView;
     @BindView(R.id.lottie_button)
     LottieButton mLottieButton;
-    @BindView(R.id.photo_view)
-    PhotoView mPhotoView;
+    @BindView(R.id.image)
+    FrameLayout mImage;
+    @BindView(R.id.image_view)
+    ImageView mImageView;
     private List<Object> mItems;
     public MultiTypeAdapter mAdapter;
 
@@ -39,14 +53,14 @@ public class ViewTestActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
 
-        getIndicatorBeans();
-        mAdapter.notifyDataSetChanged();
+//        getIndicatorBeans();
+//        mAdapter.notifyDataSetChanged();
 
         mLottieButton.setText("确定");
         mLottieButton.setLoadingText("Go!");
         mLottieButton.setEnable(true);
 
-        mPhotoView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        glide();
 
         gridView();
     }
@@ -69,6 +83,54 @@ public class ViewTestActivity extends AppCompatActivity {
         mAdapter.register(IndicatroItemBean.class, new IndicatorItemViewBinder());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void glide() {
+        String bgUrl = "http://cdn.cnbj2.fds.api.mi-img.com/lumiaiot/service/icon/background/homepage_background_a.png";
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.home_bg)
+                .error(R.drawable.home_bg)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+
+        Glide.with(mImageView.getContext()).load(TextUtils.isEmpty(bgUrl) ? R.drawable.home_bg : bgUrl)
+                .apply(options)
+//                .into(new CustomViewTarget<View, Drawable>(mImage) {
+//                    @Override
+//                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+//                        Log.d("zhiheng", "onLoadFailed = " + errorDrawable);
+//                        mImage.setBackground(errorDrawable);
+//                    }
+//
+//                    @Override
+//                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                        Log.d("zhiheng", "onResourceReady = " + resource);
+//                        mImage.setBackground(resource);
+//                    }
+//
+//                    @Override
+//                    protected void onResourceCleared(@Nullable Drawable placeholder) {
+//                        Log.d("zhiheng", "onResourceCleared = " + placeholder);
+//                        mImage.setBackground(placeholder);
+//                    }
+//                })
+                .into(new SimpleTarget<Drawable>() {
+
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        Log.d("zhiheng", "onResourceReady = " + resource);
+                        mImageView.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                        super.onLoadFailed(errorDrawable);
+                        Log.d("zhiheng", "onLoadFailed = " + errorDrawable);
+                        mImageView.setBackground(errorDrawable);
+                    }
+                });
+
     }
 
     private void getIndicatorBeans() {
