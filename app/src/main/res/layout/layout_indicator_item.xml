@@ -6,17 +6,17 @@
 
     <com.lzh.sample.ItemIndicatorView
         android:id="@+id/indicator"
-        android:layout_width="20dp"
+        android:layout_width="@dimen/px20"
         android:layout_height="0dp"
-        app:indicator_above_dis="25dp"
-        app:indicator_line_color="@color/colorAccent"
-        app:indicator_icon_id="@mipmap/ic_launcher_round"
-        app:indicator_line_width="1dp"
+        android:layout_marginLeft="@dimen/px10"
+        app:indicator_above_dis="@dimen/px22"
+        app:indicator_icon_id="@mipmap/family_manage_message_center_group"
         app:indicator_icon_size="20dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:indicator_line_color="@color/color_9ac8ff"
+        app:indicator_line_width="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_view"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="15dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_text"

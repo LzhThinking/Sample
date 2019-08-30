@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".mpandroidchart.custombarchart.StateBarChartActivity"></activity>
+        <activity android:name=".mpandroidchart.ChartActivity" />
+        <activity android:name=".TestActivity" />
         <activity android:name=".ViewTestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -20,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".matrix.MatrixActivity" />
     </application>
 
 </manifest>

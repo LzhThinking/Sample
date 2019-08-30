@@ -2,6 +2,8 @@ package com.lzh.sample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.lzh.sample.Utils.FormatUtils;
+import com.lzh.sample.matrix.MatrixActivity;
+import com.lzh.sample.mpandroidchart.ChartActivity;
+import com.lzh.sample.mpandroidchart.custombarchart.StateBarChartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         mItems.add(ViewTestActivity.class);
+        mItems.add(TestActivity.class);
+        mItems.add(ChartActivity.class);
+//        mItems.add(MatrixActivity.class);
+        mItems.add(StateBarChartActivity.class);
     }
 
     @Override
@@ -39,6 +53,27 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ClassAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        long endTime = 1565798399999L;
+        long startTime = 1514736000000L;
+        System.out.println("leizhiheng start time: " + FormatUtils.timeFormatWidthFormat(startTime, FormatUtils.YYYY_MM_DD_HH_MM));
+        System.out.println("leizhiheng end time: " + FormatUtils.timeFormatWidthFormat(endTime, FormatUtils.YYYY_MM_DD_HH_MM));
+        preloadBackground();
+    }
+
+    /**
+     * 先预加载背景图片，避免跳转到MainActivity再去加载时出现闪白现象
+     */
+    private void preloadBackground() {
+        String bgUrl = "http://img4q.duitang.com/uploads/item/201505/06/20150506202234_thzKj.jpeg";
+        if (bgUrl.startsWith("http://")) {
+            bgUrl = bgUrl.replace("http://", "https://");
+        }
+        Log.d("zhiheng", "preloadBackground url = " + bgUrl);
+        Glide.with(getApplicationContext())
+                .load(TextUtils.isEmpty(bgUrl) ? R.drawable.home_bg : bgUrl)
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.RESOURCE))
+                .preload();
     }
 
     @Override

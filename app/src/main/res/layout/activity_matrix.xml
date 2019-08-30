@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Space
+        android:id="@+id/space_center"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/space_center">
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="@dimen/px200"
+            android:layout_height="@dimen/px200"
+            android:src="@mipmap/recommend_auto_b"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/space_center"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <com.lzh.sample.matrix.MatrixView
+            android:id="@+id/matrix_view"
+            android:layout_width="@dimen/px200"
+            android:layout_height="@dimen/px200"
+            android:background="@color/colorAccent"/>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="item_title_text_color">#FF333333</color>
+    <color name="item_sub_title_text_color">#FF999999</color>
+    <color name="item_content_text_color">#FF777777</color>
+    <color name="divide_line">#CACACA</color>
+    <color name="def_statusbar">#ff202b33</color>
+    <color name="pageBack">#f8fafb</color>
+    <color name="dialogBack">#D1f8f8f8</color>
+    <color name="colorPrimary">#5FA7FE</color>
+    <color name="colorPrimaryBtnDark">#2E7BD8</color>
+    <color name="colorPrimaryDark">#0493c4</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorGrayText">#C2C9CC</color>
+    <color name="colorGrayBg">#ECEFF1</color>
+    <color name="white">@android:color/white</color>
+    <color name="black">#ff000000</color>
+    <color name="colorDarkGrayText">#90000000</color>
+    <color name="color_black_171818">#171818</color>
+    <color name="gray_line_color">#E0E0E0</color>
+    <color name="gray_EBEDEE">#EBEDEE</color>
+    <color name="dialog_bg_color">#5c000000</color>
+    <color name="red_002828">#002828</color>
+
+    <color name="colorPickOtherText">#9d9d9d</color>
+    <color name="colorPickCurText">#292929</color>
+    <color name="colorPickIndicator">#80aba9a2</color>
+
+    <color name="cpb_grey">#ffdedede</color>
+    <color name="cpb_blue">#ff0099cc</color>
+    <color name="cpb_blue_dark">#ff00719b</color>
+    <color name="cpb_red">#ffff4444</color>
+    <color name="cpb_red_dark">#ffcd3a3a</color>
+    <color name="cpb_green">#ff99cc00</color>
+    <color name="cpb_green_dark">#ff6d9b00</color>
+    <color name="green_4AC47E">#4ac47e</color>
+    <color name="progress_text">#ff03ace6</color>
+    <color name="grey_CAC9C7">#CAC9C7</color>
+    <color name="progress_circle_bg">#B3E6F7</color>
+
+    <color name="transparent">@android:color/transparent</color>
+    <!--<color name="blue_03ACE6">#03ACE6</color>-->
+    <color name="black_030303">#030303</color>
+    <color name="color_cell_shadow">#0503202b</color>
+    <color name="color_99dde1e3">#99dde1e3</color>
+    <color name="color_dde1e3">#dde1e3</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_818181">#818181</color>
+    <color name="color_d6d6d6">#d6d6d6</color>
+    <color name="color_d9d9d9">#d9d9d9</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_title_bar_shadow">#0B252626</color>
+    <color name="fm_classify_item_bg_select">#FFF0F2F3</color>
+    <color name="fm_classify_item_bg_unselect">#FFFFFFFF</color>
+    <color name="color_f6f6f6">#f6f6f6</color>
+
+    <color name="blue_35BDEB">#35BDEB</color>
+    <color name="blue_5AC7EC">#5AC7EC</color>
+    <color name="gray_F7F8F9">#F7F8F9</color>
+    <color name="color_58aefc">#58aefc</color>
+    <color name="color_D858AEFC">#D858aefc</color>
+    <color name="color_1458aefc">#1458aefc</color>
+    <color name="color_f8f8f8">#f8f8f8</color>
+    <color name="color_e6f8f8f8">#e6f8f8f8</color>
+    <color name="color_8f8f8f">#8f8f8f</color>
+    <color name="color_cacaca">#cacaca</color>
+    <color name="color_F3F3F3">#F3F3F3</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_3f3f3f">#3f3f3f</color>
+    <color name="color_ff7878">#ff7878</color>
+    <color name="color_f97676">#f97676</color>
+    <color name="color_f75c43">#f75c43</color>
+    <color name="color_f34345">#f34345</color>
+    <color name="yellow_F79640">#F79640</color>
+    <color name="color_8e8e93">#8e8e93</color>
+    <color name="color_5fa7fe">#5FA7FE</color>
+    <color name="color_3ba8ff">#3BA8FF</color>
+    <color name="color_3ca9ff">#3CA9FF</color>
+    <color name="color_10_5fa7fe">#265FA7FE</color>
+    <color name="color_2f77be">#2F77BE</color>
+    <color name="color_80000000">#80000000</color>
+    <color name="color_e5e5e5">#e5e5e5</color>
+
+
+    <color name="gray_D8D8D8">#D8D8D8</color>
+    <color name="gray_D2D2D2">#D2D2D2</color>
+    <!--灰色线，用于1像素那种-->
+    <color name="gray_EDEDEE">#EDEDEE</color>
+    <color name="gray_line">#E0E0E0</color>
+    <color name="gray_AAAAAA">#AAAAAA</color>
+    <color name="gray_888888">#888888</color>
+    <color name="gray_A4AAB3">#A4AAB3</color>
+    <color name="gray_989EA1">#989EA1</color>
+    <color name="ac_control_off_status_bar">#9A9FA8</color>
+    <color name="ac_control_on_status_bar">#589BFC</color>
+    <color name="color_b2000000">#b2000000</color>
+
+    <color name="red_FF3838">#FF3838</color>
+    <color name="red_ff6464">#FF6464</color>
+    <color name="gray_cccccc">#CCCCCC</color>
+    <color name="gray_dadada">#DADADA</color>
+
+    <color name="color_9ac8ff">#9ac8ff</color>
+    <color name="color_f2f7fa">#f2f7fa</color>
+    <color name="color_6284db">#6284db</color>
+    <color name="color_e6e8eb">#e6e8eb</color>
+    <color name="color_7fffe5e5">#7fffe5e5</color>
+
+    <color name="red_FF4C4C">#FF4C4C</color>
+    <color name="red_ff3838">#ff3838</color>
+    <color name="gray_fafafa">#fafafa</color>
+    <color name="red_FC5858">#FC5858</color>
+    <color name="color_60_black">#99000000</color>
+
+    <color name="red_F06654">#F06654</color>
+    <color name="orange_FAD38D">#FAD38D</color>
+    <color name="orange_F8C05C">#F8C05C</color>
+    <color name="gray_3B3B3B">#3B3B3B</color>
+    <color name="gray_6C6C6C">#6c6c6c</color>
+    <color name="color_7a7b7b">#7a7b7b</color>
+    <color name="color_203202b">#0203202b</color>
+    <color name="color_dddddd">#DDDDDD</color>
+    <color name="color_cecece">#CECECE</color>
+    <color name="gray_3a3b3c">#3a3b3c</color>
+    <color name="blue_AACEF9">#AACEF9</color>
+    <color name="blue_fff2e7">#fff2e7</color>
+    <color name="color_7f7f7f">#7f7f7f</color>
+    <color name="red_ec2700">#EC2700</color>
+    <color name="color_f34545">#f34545</color>
+    <color name="black_20_transparent">#30000000</color>
+    <color name="color_5FA7FE">#5fa7fe</color>
+    <color name="blue_E7F2FF">#E7F2FF</color>
+    <color name="gary_D0D0D0">#D0D0D0</color>
+    <color name="blue_press_corver">#4C85CB</color>
+    <color name="e3e3e3">#E3E3E3</color>
 </resources>
