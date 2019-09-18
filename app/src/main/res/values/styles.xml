@@ -17,4 +17,16 @@
         <attr name="indicator_line_width" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="DatePeriodRadio">
+        <attr name="radio_count" format="integer"/>
+        <attr name="radio_texts" format="reference"/>
+        <attr name="radio_background" format="reference"/>
+        <attr name="radio_margin" format="dimension"/>
+        <attr name="radio_text_color" format="color"/>
+        <attr name="radio_selected_color" format="color"/>
+        <attr name="radio_text_size" format="dimension"/>
+        <attr name="radio_width" format="dimension"/>
+        <attr name="radio_height" format="dimension"/>
+    </declare-styleable>
+
 </resources>

@@ -3,27 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mpandroidchart.custombarchart.StateBarChartActivity">
+    android:layout_height="wrap_content"
+    android:background="@color/pageBack">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="柱形图" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart1"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="10dp"
-        android:padding="20dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <!--高度为190 = 图表内容高度（160）+ 图例内容高度（15）+ 图例垂直方向偏移量（15）-->
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/chart1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px190"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/space_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px10"
+                android:background="@color/transparent"
+                app:layout_constraintTop_toBottomOf="@+id/chart1" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart"
+                android:layout_marginTop="@dimen/px20"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px200"
+                app:layout_constraintTop_toBottomOf="@+id/space_divider"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Button"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/line_chart"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,10 +13,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +42,7 @@ import com.lzh.sample.binder.IndicatorItemViewBinder;
 import com.lzh.sample.entity.IndicatroItemBean;
 import com.lzh.sample.viewtest.RemarkAdapter;
 import com.lzh.sample.widgets.CommonGridDecoration;
+import com.lzh.sample.widgets.DatePeriodRadio;
 import com.lzh.sample.widgets.LottieButton;
 
 import java.util.ArrayList;
@@ -48,12 +54,19 @@ import me.drakeet.multitype.MultiTypeAdapter;
 
 public class ViewTestActivity extends AppCompatActivity {
 
+    @BindView(R.id.button_1)
+    Button mBtn;
+
+    @BindView(R.id.date_radio)
+    DatePeriodRadio radio;
     @BindView(R.id.iv_1)
     ImageView iv1;
     @BindView(R.id.iv_22)
     ImageView iv2;
+    @BindView(R.id.scroll_view)
+    ScrollView mScrollView;
     @BindView(R.id.root_view)
-    public View mRootView;
+    public LinearLayout mRootView;
     @BindView(R.id.iv_bg)
     public ImageView mIvBg;
     @BindView(R.id.list_view)
@@ -66,6 +79,22 @@ public class ViewTestActivity extends AppCompatActivity {
     ImageView mImageView;
     private List<Object> mItems;
     public MultiTypeAdapter mAdapter;
+
+    @BindView(R.id.tv_content_left)
+    TextView tvContentLeft;
+    @BindView(R.id.tv_title_left)
+    TextView tvTitleLeft;
+    @BindView(R.id.tv_unit_left)
+    TextView tvUnitLeft;
+
+    @BindView(R.id.tv_content_right)
+    TextView tvContentRight;
+    @BindView(R.id.tv_title_right)
+    TextView tvTitleRight;
+    @BindView(R.id.tv_unit_right)
+    TextView tvUnitRight;
+
+    private float scale = 0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,23 +110,57 @@ public class ViewTestActivity extends AppCompatActivity {
         mLottieButton.setLoadingText("Go!");
         mLottieButton.setEnable(true);
 
-        glide();
+//        glide();
 
 //        gridView();
         viewShot();
 
         PhotoView photoView;
         text();
+
+        mRootView.setEnabled(false);
+        mRootView.setNestedScrollingEnabled(false);
+
+        dealTouch();
+
+
+        mBtn.setOnClickListener(v -> {
+            scale += 1f;
+            mBtn.setText(mBtn.getWidth() * scale + "");
+        });
+
+        radio.setOnRadioSelectedListener(index -> Toast.makeText(ViewTestActivity.this, "index = " + index, Toast.LENGTH_LONG).show());
+
+        setChartSummarize();
+    }
+
+    private void setChartSummarize() {
+        tvTitleLeft.setText("浸水");
+        tvUnitLeft.setVisibility(View.GONE);
+        tvContentLeft.setText("当前状态");
+
+        tvTitleRight.setText("4");
+        tvUnitRight.setText("次");
+        tvContentRight.setText("今日事件触发");
+    }
+
+    private void dealTouch() {
+        mRootView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
     }
 
     private void text() {
         TextView textView = findViewById(R.id.tv_click);
         ColorStateList csl = getResources().getColorStateList(R.color.black);
         textView.setTextColor(csl);
-        textView.setOnClickListener(new View.OnClickListener() {
+        textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-
+            public boolean onTouch(View v, MotionEvent event) {
+                return  true;
             }
         });
     }

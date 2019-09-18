@@ -27,9 +27,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportActivity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SupportActivity {
 
     @BindView(R.id.list_view)
     public RecyclerView mRecyclerView;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         mItems.add(ViewTestActivity.class);
+        mItems.add(FragmentTestActivity.class);
         mItems.add(TestActivity.class);
         mItems.add(ChartActivity.class);
 //        mItems.add(MatrixActivity.class);

@@ -134,4 +134,13 @@
     <color name="gary_D0D0D0">#D0D0D0</color>
     <color name="blue_press_corver">#4C85CB</color>
     <color name="e3e3e3">#E3E3E3</color>
+    <color name="dcdcdc">#DCDCDC</color>
+    <!--水浸正常状态-->
+    <color name="color_EBF2FF">#EBF2FF</color>
+    <!--水浸离线状态颜色-->
+    <color name="color_89909B">#89909B</color>
+    <!--水浸状态颜色-->
+    <color name="color_6C98FD">#6C98FD</color>
+
+    <color name="color_D1D1D1">#D1D1D1</color>
 </resources>

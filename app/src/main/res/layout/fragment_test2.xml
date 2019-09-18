@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/pageBack">
+
+    <LinearLayout
+        android:id="@+id/radio_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        app:layout_goneMarginTop="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.lzh.sample.widgets.DatePeriodRadio
+            android:id="@+id/date_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/px20"
+            app:radio_background="@drawable/selector_radio_bg"
+            app:radio_count="6"
+            app:radio_texts="@array/date_radio_text"
+            app:radio_margin="@dimen/px20"
+            app:radio_text_color="@color/color_666666"
+            app:radio_text_size="@dimen/sp12"
+            app:radio_height="@dimen/px26"
+            app:radio_width="@dimen/px50"
+            app:radio_selected_color="@color/color_5fa7fe"/>
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/view_scroll_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_shadow_height"
+        android:layout_below="@+id/radio_container"
+        android:visibility="gone"/>
+
+</RelativeLayout>

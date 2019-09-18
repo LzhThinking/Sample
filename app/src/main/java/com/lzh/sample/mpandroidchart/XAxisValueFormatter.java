@@ -10,9 +10,6 @@ public class XAxisValueFormatter implements IAxisValueFormatter {
 
     public String getFormattedValue(float value, AxisBase axis) {
         int position = (int) value;
-        if (position >= 6) {
-            position = 0;
-        }
-        return xStrs[position];
+        return xStrs[position % xStrs.length];
     }
 }

@@ -1,84 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_view"
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="afterDescendants"
     tools:context=".ViewTestActivity">
 
-    <TextView
-        android:id="@+id/tv_click"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textSize="@dimen/px20"
-        android:text="你好你好"/>
-
-    <ImageView
-        android:id="@+id/iv_1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:visibility="visible"
-        android:background="@drawable/home_bg"/>
-
-    <ImageView
-        android:id="@+id/iv_22"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:visibility="visible"
-        android:background="@color/colorAccent"/>
-
-
-    <ImageView
-        android:id="@+id/iv_bg"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:visibility="invisible"
-        android:background="@color/transparent"/>
-
-    <com.lzh.sample.widgets.ColorPickerView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:visibility="gone"/>
-
-    <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/photo_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:visibility="gone"/>
-
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-    <FrameLayout
-        android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-    <com.lzh.sample.widgets.LottieButton
-        android:id="@+id/lottie_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_view"
+    <com.lzh.sample.widgets.NestedLinearLayout
+        android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
+        android:descendantFocusability="afterDescendants"
+        android:orientation="vertical">
 
-    <com.lzh.sample.ItemIndicatorView
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
-        app:indicator_above_dis="100dp"
-        app:indicator_line_color="@color/colorAccent"
-        app:indicator_icon_id="@mipmap/ic_launcher_round"
-        app:indicator_line_width="1dp"
-        app:indicator_icon_size="20dp"/>
+        <com.lzh.sample.widgets.DatePeriodRadio
+            android:id="@+id/date_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/px20"
+            app:radio_background="@drawable/selector_radio_bg"
+            app:radio_count="4"
+            app:radio_texts="@array/date_radio_text"
+            app:radio_margin="@dimen/px20"
+            app:radio_text_color="@color/color_666666"
+            app:radio_text_size="@dimen/sp12"
+            app:radio_height="@dimen/px26"
+            app:radio_width="@dimen/px50"
+            app:radio_selected_color="@color/color_5fa7fe"/>
 
-</LinearLayout>
+        <include layout="@layout/layout_chart_summarize"/>
+
+        <Button
+            android:id="@+id/button_1"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+
+        <com.lzh.sample.widgets.TestCustomView
+            android:layout_width="match_parent"
+            android:layout_height="400dp" />
+
+        <TextView
+            android:id="@+id/tv_click"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:gravity="center"
+            android:text="你好你好"
+            android:textSize="@dimen/px20" />
+
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="100dp"
+            android:layout_height="400dp"
+            android:background="@drawable/home_bg"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_22"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorAccent"
+            android:visibility="visible" />
+
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@color/transparent"
+            android:visibility="gone" />
+
+        <com.lzh.sample.widgets.ColorPickerView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:visibility="gone" />
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photo_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <FrameLayout
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <com.lzh.sample.widgets.LottieButton
+            android:id="@+id/lottie_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
+
+        <com.lzh.sample.ItemIndicatorView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            app:indicator_above_dis="100dp"
+            app:indicator_icon_id="@mipmap/ic_launcher_round"
+            app:indicator_icon_size="20dp"
+            app:indicator_line_color="@color/colorAccent"
+            app:indicator_line_width="1dp" />
+    </com.lzh.sample.widgets.NestedLinearLayout>
+
+</ScrollView>

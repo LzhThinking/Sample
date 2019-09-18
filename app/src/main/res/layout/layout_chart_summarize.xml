@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_left_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_content_left"
+        app:layout_constraintRight_toRightOf="@+id/tv_content_left">
+        <TextView
+            android:id="@+id/tv_title_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp23"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="打开"/>
+
+        <TextView
+            android:id="@+id/tv_unit_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/px2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_title_left"
+            app:layout_constraintLeft_toRightOf="@+id/tv_title_left"
+            tools:text="次"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    
+
+    <TextView
+        android:id="@+id/tv_content_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp11"
+        android:textColor="@color/color_999999"
+        android:minWidth="@dimen/px50"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/layout_left_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="发出"/>
+    
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="layout_left_top, tv_content_left"
+        app:barrierDirection="right"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0.5dp"
+        android:layout_height="@dimen/px30"
+        android:background="@color/color_D1D1D1"
+        app:layout_constraintLeft_toRightOf="@+id/barrier_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginRight="@dimen/px30"
+        android:visibility="visible"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_right_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_content_right"
+        app:layout_constraintRight_toRightOf="@+id/tv_content_right"
+        android:visibility="visible">
+        <TextView
+            android:id="@+id/tv_title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp23"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="打开"/>
+
+        <TextView
+            android:id="@+id/tv_unit_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/px2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_title_right"
+            app:layout_constraintLeft_toRightOf="@+id/tv_title_right"
+            tools:text="次"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_content_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp11"
+        android:textColor="@color/color_999999"
+        android:minWidth="@dimen/px50"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/layout_right_top"
+        app:layout_constraintLeft_toRightOf="@+id/divider"
+        android:layout_marginLeft="@dimen/px30"
+        android:visibility="visible"
+        tools:text="发出"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

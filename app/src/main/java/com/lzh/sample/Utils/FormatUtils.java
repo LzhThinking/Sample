@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+
 import com.lzh.sample.R;
 
 import java.text.DecimalFormat;
@@ -175,13 +176,8 @@ public class FormatUtils {
     }
 
     public static boolean isNickNameFormatValid(String str) {
-        //昵称格式不做要求
-        if(str == null){
-            return false;
-        }
-        Matcher isValid = mNamePattern.matcher(str);
-        Matcher isEndValid = mNameEndPattern.matcher(str);
-        if (!isValid.matches() || !isEndValid.matches()) {
+        //昵称格式不做要求.只限制个数50个(输入框限制)
+        if (str == null) {
             return false;
         }
         return true;
@@ -240,11 +236,13 @@ public class FormatUtils {
         return pattern.matcher(str).matches();
     }
 
-    public static Calendar tempCalendar;
+    private static Calendar tempCalendar;
+    public static final String YYYY_MM_DD_HH_MM_SSS = "yyyy/MM/dd HH:mm:ss sss";
     public static final String YYYY_MM_DD_HH_MM = "yyyy/MM/dd HH:mm";
     public static final String HH_MM = "HH:mm";
-    public static final String hh_MM = "hh:mm";
-    public static final String MM_SS = "mm:ss";
+    private static final String hh_MM = "hh:mm";
+    private static final String MM_SS = "mm:ss";
+    public static final String HH_MM_SS = "HH:mm:ss";
     public static final String MM_DD_HH_MM = "MM/dd HH:mm";
     public static final String MD_DD_HH_MM_BAR = "MM-dd HH:mm";
     public static final String YYYY_MM_DD_MIDDLE_LINE = "yyyy-MM-dd";
@@ -364,6 +362,16 @@ public class FormatUtils {
         return simpleDateFormat.format(tempCalendar.getTime());
     }
 
+    public static String timeFormatMM1DD(long time) {
+        simpleDateFormat.applyPattern(MM1DD);
+        if (null == tempCalendar) {
+            tempCalendar = Calendar.getInstance();
+        }
+        tempCalendar.setTimeInMillis(time);
+
+        return simpleDateFormat.format(tempCalendar.getTime());
+    }
+
     public static String timeFormatMM1DDOrDate(Context context, long time) {
         if (null == tempCalendar) {
             tempCalendar = Calendar.getInstance();
@@ -431,12 +439,13 @@ public class FormatUtils {
 
     /**
      * 根据传入的字符串格式格式化time
-     * @param time 时间
+     *
+     * @param time   时间
      * @param format 时间格式
      * @return
      */
     public static String timeFormatWidthFormat(long time, String format) {
-        simpleDateFormat.applyPattern(MM_DD_HH_MM);
+        simpleDateFormat.applyPattern(format);
         if (null == tempCalendar) {
             tempCalendar = Calendar.getInstance();
         }
@@ -600,5 +609,98 @@ public class FormatUtils {
             e.printStackTrace();
             return gmt;
         }
+    }
+
+    /**
+     * 获取本周日凌晨时间，如果获取周一则将1改为2
+     * @return
+     */
+    public static long getCurrentWeekZeroTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.DAY_OF_WEEK, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date zero = calendar.getTime();
+        return zero.getTime();
+    }
+
+    /**
+     * 获取当天凌晨0点毫秒数
+     *
+     * @return
+     */
+    public static long getCurrentDayZeroTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date zero = calendar.getTime();//这里的时间是前一天的23:59:000
+        return zero.getTime();
+    }
+
+    public static long getCurrentTime() {
+        Date date = new Date();
+        return date.getTime();
+    }
+
+    /**
+     * 将毫秒数换算成时分秒字符串
+     *
+     * @param time 单位为秒
+     * @return
+     */
+    public static String time2HHmmss(Context context, int time) {
+        String timeStr;
+        int hour;
+        int minute;
+        int second;
+        if (time <= 0)
+            return "00:00";
+        else {
+            minute = time / 60;
+            if (minute < 60) {
+                second = time % 60;
+                //timeStr = unitFormat(minute) + ":" + unitFormat(second);
+                timeStr = minute + context.getString(R.string.minutes) + second + context.getString(R.string.seconds);
+            } else {
+                hour = minute / 60;
+                if (hour > 99)
+                    return "99:59:59";
+                minute = minute % 60;
+                second = time - hour * 3600 - minute * 60;
+                //timeStr = unitFormat(hour) + ":" + unitFormat(minute) + ":" + unitFormat(second);
+                timeStr = hour + context.getString(R.string.hour) + minute + context.getString(R.string.minutes) + second + context.getString(R.string.seconds);
+            }
+        }
+        return timeStr;
+    }
+
+    public static String time2HHmm(Context context, int time) {
+        String timeStr;
+        int hour;
+        int minute;
+        if (time <= 0)
+            return "00:00";
+        else {
+            minute = time / 60;
+            hour = minute / 60;
+            if (hour > 99)
+                return "99:59:59";
+            minute = minute % 60;
+            timeStr = unitFormat(hour) + ":" + unitFormat(minute);
+            return timeStr;
+        }
+    }
+
+    public static String unitFormat(int i) {
+        String retStr;
+        if (i >= 0 && i < 10)
+            retStr = "0" + i;
+        else
+            retStr = "" + i;
+        return retStr;
     }
 }

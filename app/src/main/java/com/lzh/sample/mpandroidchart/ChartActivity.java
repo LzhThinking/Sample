@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -37,9 +36,9 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.renderer.DataRenderer;
-import com.lzh.sample.MainActivity;
 import com.lzh.sample.R;
+import com.lzh.sample.mpandroidchart.custombarchart.StateLineChartRender;
+import com.lzh.sample.mpandroidchart.custombarchart.StateMarkerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,7 +171,7 @@ public class ChartActivity extends AppCompatActivity implements OnChartValueSele
         legend.setXEntrySpace(0);
 
         //如果点击柱形图，会弹出pop提示框.XYMarkerView为自定义弹出框
-        XYMarkerView mv = new XYMarkerView(this, xAxisFormatter);
+        StateMarkerView mv = new StateMarkerView(this, xAxisFormatter);
         mv.setChartView(mChart);
         mChart.setMarker(mv);
         setBarChartData();
@@ -394,7 +393,7 @@ public class ChartActivity extends AppCompatActivity implements OnChartValueSele
         valsComp1.add(new Entry(5.1f, 4));
 
         valsComp2.add(new Entry(0, 2));
-        valsComp2.add(new Entry(1, 0));
+        valsComp2.add(new Entry(1, 1));
         valsComp2.add(new Entry(2, 4));
         valsComp2.add(new Entry(3, 2));
         valsComp2.add(new Entry(4, 5));
@@ -425,18 +424,22 @@ public class ChartActivity extends AppCompatActivity implements OnChartValueSele
         setComp2.setDrawCircles(true);
         setComp2.setColor(getResources().getColor(R.color.red_ec2700));
         setComp2.setMode(LineDataSet.Mode.LINEAR);
+//        setComp2.setDrawFilled(true);
+        setComp2.setFillColor(getResources().getColor(R.color.red_ec2700));
 
         LineDataSet setComp3 = new LineDataSet(valsComp2, "CUBIC_BEZIER");
         setComp3.setAxisDependency(YAxis.AxisDependency.LEFT);
         setComp3.setDrawCircles(true);
         setComp3.setColor(getResources().getColor(R.color.green_4AC47E));
-        setComp3.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        setComp3.setMode(LineDataSet.Mode.LINEAR);
+        setComp3.setDrawFilled(true);
+        setComp3.setFillColor(getResources().getColor(R.color.green_4AC47E));
 
         //注意：如果三条曲线的点数不一样，则X轴的标签个数等于点数最少曲线的点数
         List<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(setComp1);
+//        dataSets.add(setComp1);
 //        dataSets.add(setComp2);
-//        dataSets.add(setComp3);
+        dataSets.add(setComp3);
 
         LineData lineData = new LineData(dataSets);
 

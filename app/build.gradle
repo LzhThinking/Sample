@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.lzh.sample"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -62,4 +62,9 @@ dependencies {
 
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    // To get SwipeBack feature, rely on both fragmentation & fragmentation-swipeback
+    implementation 'me.yokeyword:fragmentationx:1.0.1'
+// Swipeback is based on fragmentation. Refer to SwipeBackActivity/Fragment for your Customized SupportActivity/Fragment
+    implementation 'me.yokeyword:fragmentationx-swipeback:1.0.1'
 }

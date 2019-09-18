@@ -1,6 +1,7 @@
 package com.lzh.sample.mpandroidchart.custombarchart;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.Log;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
@@ -13,9 +14,8 @@ import com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.renderer.BarChartRenderer;
 import com.github.mikephil.charting.utils.Transformer;
+import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-
-import java.util.concurrent.atomic.AtomicLong;
 
 public class StateBarChartRender extends BarChartRenderer {
     public StateBarChartRender(BarDataProvider chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
@@ -83,9 +83,11 @@ public class StateBarChartRender extends BarChartRenderer {
             }
 
             float viewWidth = mChart.getWidth();
-            float barWidth = (3.0f / viewWidth) * (barData.getXMax() - barData.getXMin());
+            //动态修改barWidth，否则放大时barWidth也会跟着变大
+            float barWidth = (Utils.convertDpToPixel(0.5f) / viewWidth) * (barData.getXMax() - barData.getXMin())/ mViewPortHandler.getScaleX();
             prepareBarHighlight(highlight.getX(), y1, y2, barWidth, trans);
-            Log.d("zhiheng", "barWidth = " + barWidth);
+            RectF contentRect = mChart.getContentRect();
+            Log.d("zhiheng", "barWidth = " + barWidth + ", left = " + contentRect.left + ", right = " + contentRect.right + ", width = " + viewWidth + ", scale = " + mViewPortHandler.getScaleX());
 
             setHighlightDrawPos(highlight, mBarRect);
 
