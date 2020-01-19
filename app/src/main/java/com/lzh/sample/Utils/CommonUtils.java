@@ -346,7 +346,11 @@ public class CommonUtils {
         String[] after = hourAfter.split(":");
         try {
             after[0] = extractDigitFromStr(after[0]);
-            return (Integer.valueOf(after[0]) * 60 + Integer.valueOf(after[1])) - (Integer.valueOf(extractDigitFromStr(before[0])) * 60 + Integer.valueOf(before[1]));
+            int dis = (Integer.valueOf(after[0]) * 60 + Integer.valueOf(after[1])) - (Integer.valueOf(extractDigitFromStr(before[0])) * 60 + Integer.valueOf(before[1]));
+            if (dis < 0) {
+                dis += 24 * 60;
+            }
+            return dis;
         } catch (Exception e) {
             return 0;
         }

@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifBitmapProvider;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -42,6 +44,7 @@ import com.lzh.sample.binder.IndicatorItemViewBinder;
 import com.lzh.sample.entity.IndicatroItemBean;
 import com.lzh.sample.viewtest.RemarkAdapter;
 import com.lzh.sample.widgets.CommonGridDecoration;
+import com.lzh.sample.widgets.CountDownView;
 import com.lzh.sample.widgets.DatePeriodRadio;
 import com.lzh.sample.widgets.LottieButton;
 
@@ -50,6 +53,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 public class ViewTestActivity extends AppCompatActivity {
@@ -57,6 +61,8 @@ public class ViewTestActivity extends AppCompatActivity {
     @BindView(R.id.button_1)
     Button mBtn;
 
+    @BindView(R.id.seek_bar)
+    SeekBar seekBar;
     @BindView(R.id.date_radio)
     DatePeriodRadio radio;
     @BindView(R.id.iv_1)
@@ -94,6 +100,14 @@ public class ViewTestActivity extends AppCompatActivity {
     @BindView(R.id.tv_unit_right)
     TextView tvUnitRight;
 
+    @BindView(R.id.count_down_view)
+    CountDownView countDownView;
+    @BindView(R.id.tv_height_test)
+    TextView textView;
+
+    @BindView(R.id.iv_gif)
+    ImageView mIvGif;
+
     private float scale = 0f;
 
     @Override
@@ -110,7 +124,8 @@ public class ViewTestActivity extends AppCompatActivity {
         mLottieButton.setLoadingText("Go!");
         mLottieButton.setEnable(true);
 
-//        glide();
+
+        glide();
 
 //        gridView();
         viewShot();
@@ -125,14 +140,73 @@ public class ViewTestActivity extends AppCompatActivity {
 
 
         mBtn.setOnClickListener(v -> {
-            scale += 1f;
-            mBtn.setText(mBtn.getWidth() * scale + "");
+//            scale += 1f;
+//            mBtn.setText(mBtn.getWidth() * scale + "");
+//
+////            Toast.makeText(getApplicationContext(), "clickable", Toast.LENGTH_LONG).show();
+//            int textHeight = textView.getHeight();
+//            Paint.FontMetrics fontMetrics = textView.getPaint().getFontMetrics();
+//            int measureHeight = (int) (fontMetrics.bottom = fontMetrics.top);
+//            Log.d("zhiheng", "textHeight = " + textHeight + ", measuredheight = " + measureHeight + ", top = " + fontMetrics.top + ", bottom = " + fontMetrics.bottom);
+            int width = seekBar.getWidth();
+            int processDrawableWidth = seekBar.getProgressDrawable().getBounds().width();
+            int processWidth = processDrawableWidth - seekBar.getThumb().getBounds().width();
+            int leftPadding = seekBar.getPaddingLeft();
+            int rightPadding = seekBar.getPaddingRight();
+            Log.d("zhiheng", "seekBar width = " + width + ", processDrawableWidth = " + processDrawableWidth + ", processWidth = " + processWidth + ", leftPadding = " + leftPadding + ", rightPadding = " + rightPadding);
         });
 
         radio.setOnRadioSelectedListener(index -> Toast.makeText(ViewTestActivity.this, "index = " + index, Toast.LENGTH_LONG).show());
 
         setChartSummarize();
+
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.transparent));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+
+        countDownView.setTotolTime(60);
+        countDownView.setCurrentTime(20);
+        countDownView.setDecsText("后关闭");
+        countDownView.startCountDown();
+
+        int color = Color.toArgb(-58048);
+//        int red = (int) (color.red() * 255);
+//        int green = (int) (color.green() * 255);
+//        int blue = (int) (color.blue() * 255);
+//        int r = Color.red(-58048);
+//        int g = Color.green(-58048);
+//        int b = Color.blue(-58048);
+
+//        int bg = 0xff000000 | (r | g | b);
+
+        mRootView.setBackgroundColor(color);
+
+        bind();
+
     }
+
+    public void RecommendedAutoItemViewHolder(View itemView) {
+
+
+    }
+
+    public void bind() {
+//        String url = "http://cnbj2.fds.api.xiaomi.com/lumiaiot/ifttt/template-pic/recommend_auto_b%403x.png";
+        String url = "http://henan.china.com.cn/pic/2020-01/02/81fcad0b-6c4c-4eb7-8351-324e8390ad77.jpg";
+//        RoundedCornersTransformation mRoundedCornersTransformation = new RoundedCornersTransformation(60 , 0, RoundedCornersTransformation.CornerType.ALL);
+//        Glide.with(getA).load(url).into(mIvGif);
+
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .error(R.drawable.home_bg)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        Glide.with(mIvGif).load(url)
+                .apply(options)
+                .into(mIvGif);
+
+    }
+
 
     private void setChartSummarize() {
         tvTitleLeft.setText("浸水");
@@ -217,7 +291,11 @@ public class ViewTestActivity extends AppCompatActivity {
                 .centerCrop()
                 .error(R.drawable.home_bg)
                 .priority(Priority.HIGH)
+                .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+
+        Glide.with(mIvGif).load(R.mipmap.constant).into(mIvGif);
+
         if (bgUrl.startsWith("http://")) {
             bgUrl = bgUrl.replace("http://", "https://");
         }

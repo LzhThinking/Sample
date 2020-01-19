@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.lzh.sample.Utils.StatusBarCompat;
 
@@ -19,12 +20,13 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public class FragmentTestActivity extends AppCompatActivity {
 
+    View rootView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏标题栏
         setContentView(R.layout.activity_fragment_test_actviity);
-        StatusBarCompat.setStatusBarIconStyle(this, true);
+        rootView = findViewById(R.id.root_view);
 
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         addFragment();
@@ -32,11 +34,7 @@ public class FragmentTestActivity extends AppCompatActivity {
 //        loadRootFragment(R.id.container, TestFragment.newInstance());
 //        loadMultipleRootFragment(R.id.container, 1, TestFragment.newInstance(), TestFragment2.newInstance());
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            showBottomNav(this);
-        } else {
-            hideBottomNav(this);
-        }
+
     }
 
 //    @Override
@@ -81,9 +79,17 @@ public class FragmentTestActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d("zhiheng", "activity onConfigurationChanged");
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setNavigationBar(this, View.GONE);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            StatusBarCompat.setStatusBarIconStyle(this, true, true);
+        } else {
+            StatusBarCompat.setStatusBarIconStyle(this, true, false);
         }
+
+        int statusBarHeight = StatusBarCompat.getStatusBarHeight(this);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) rootView.getLayoutParams();
+        params.topMargin = statusBarHeight;
+        rootView.requestLayout();
+
     }
 
     public static void setNavigationBar(Activity activity, int visible){

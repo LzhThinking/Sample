@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="VerticalBrightnessControlView">
+        <attr name="shadow_width" format="dimension"/>
+        <attr name="background_color" format="color"/>
+        <attr name="cover_color" format="color"/>
+        <attr name="corner_radius" format="dimension"/>
+        <attr name="min_process" format="integer"/>
+        <attr name="max_process" format="integer"/>
+    </declare-styleable>
+</resources>

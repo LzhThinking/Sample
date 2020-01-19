@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public class ReadExcel {
     public static void main(String [] args) {
-        readExcel("C:\\project\\家庭分享项目转移文案整理.xlsx");
+        readExcel("C:\\project\\AqaraHome文案整理.xlsx");
     }
 
     public static void readExcel(String file) {
@@ -56,7 +56,7 @@ public class ReadExcel {
         int sheetCount = workbook.getNumberOfSheets();
 //        for (int i = 0; i < sheetCount; i++) {
             // 获得工作表
-            XSSFSheet sheet = workbook.getSheetAt(1);
+            XSSFSheet sheet = workbook.getSheetAt(0);
 
             int rows = sheet.getPhysicalNumberOfRows();
 
@@ -68,13 +68,14 @@ public class ReadExcel {
                 }
                 // 获取第0格数据
                 XSSFCell key = sheetRow.getCell(0);
-                XSSFCell cn = sheetRow.getCell(2);
-                XSSFCell en = sheetRow.getCell(6);
+                XSSFCell cn = sheetRow.getCell(13);
+//                XSSFCell cn = sheetRow.getCell(5);
                 // 调用toString方法获取内容
 //                <string name="Test_Hello">Test</string>
                 String cnValue = cn.toString().trim();
                 String keyStr = key.toString().toLowerCase().trim();
                 keyStr = keyStr.replace(".", "_");
+                keyStr = keyStr.replace(" ", "_");
 //                keyStr.replace('.', '_');
                 String cnStr = cn.toString();
                 if (cnValue != null && cnValue.length() != 0) {

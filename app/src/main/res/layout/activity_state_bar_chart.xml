@@ -20,7 +20,8 @@
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/chart1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px190"
+                android:layout_height="@dimen/px300"
+                android:background="@color/blue_5AC7EC"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -34,7 +35,8 @@
                 android:id="@+id/line_chart"
                 android:layout_marginTop="@dimen/px20"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px200"
+                android:layout_height="@dimen/px250"
+                android:background="@color/blue_5AC7EC"
                 app:layout_constraintTop_toBottomOf="@+id/space_divider"/>
 
             <Button
@@ -43,6 +45,7 @@
                 android:layout_height="50dp"
                 android:text="Button"
                 android:gravity="center"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/line_chart"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

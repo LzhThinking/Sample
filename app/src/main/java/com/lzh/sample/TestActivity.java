@@ -1,15 +1,18 @@
 package com.lzh.sample;
 
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TestActivity extends AppCompatActivity {
+
 
 
     @Override

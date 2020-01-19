@@ -8,11 +8,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.lzh.sample.widgets.DatePeriodRadio;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -22,7 +30,23 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public class TestFragment extends Fragment {
 
-    Handler handler = new Handler();
+    @BindView(R.id.root_view)
+    RelativeLayout rootView;
+
+    @BindView(R.id.title_view)
+    View titleView;
+
+    @BindView(R.id.radio_container)
+    LinearLayout container;
+
+    @BindView(R.id.date_radio)
+    DatePeriodRadio datePeriodRadio;
+
+    @BindView(R.id.constraint)
+    ConstraintLayout constraintLayout;
+
+    @BindView(R.id.text)
+    TextView textView;
 
     public static TestFragment newInstance() {
         TestFragment fragment = new TestFragment();
@@ -49,20 +73,45 @@ public class TestFragment extends Fragment {
 //                }
 //            }
 //        });
+
+        ButterKnife.bind(this, view);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d("zhiheng", "fragment onConfigurationChanged orientation = " + getResources().getConfiguration().orientation);
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hideBottomNav(getActivity());
-                }
-            }, 1000);
+        updateViewPosition();
+    }
 
+    private void updateViewPosition() {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            RelativeLayout.LayoutParams containerParam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            containerParam.addRule(RelativeLayout.CENTER_IN_PARENT, R.id.root_view);
+            containerParam.addRule(RelativeLayout.BELOW, R.id.title_view);
+            containerParam.setMargins(0, 0, 0, 0);
+            container.setLayoutParams(containerParam);
+
+
+            ConstraintLayout.LayoutParams textParam = (ConstraintLayout.LayoutParams) textView.getLayoutParams();
+            textParam.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+            textParam.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+            textParam.rightMargin = 0;
+            textView.setLayoutParams(textParam);
+        } else {
+            RelativeLayout.LayoutParams containeParam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            containeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, R.id.root_view);
+            containeParam.setMargins(0, 0, 0, 0);
+            container.setLayoutParams(containeParam);
+
+//            RelativeLayout.LayoutParams constraintLayoutParam = (RelativeLayout.LayoutParams) constraintLayout.getLayoutParams();
+//            constraintLayoutParam.addRule(RelativeLayout.BELOW, R.id.container);
+
+            ConstraintLayout.LayoutParams textParam = (ConstraintLayout.LayoutParams) textView.getLayoutParams();
+            textParam.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+            textParam.leftToLeft = -1;
+            textParam.rightMargin = 0;
+            textView.setLayoutParams(textParam);
         }
     }
 

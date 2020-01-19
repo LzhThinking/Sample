@@ -1,8 +1,13 @@
 package com.lzh.sample;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.github.mikephil.charting.utils.Utils;
 import com.lzh.sample.Utils.FormatUtils;
 import com.lzh.sample.matrix.MatrixActivity;
 import com.lzh.sample.mpandroidchart.ChartActivity;
@@ -44,7 +50,43 @@ public class MainActivity extends SupportActivity {
         mItems.add(ChartActivity.class);
 //        mItems.add(MatrixActivity.class);
         mItems.add(StateBarChartActivity.class);
+        mItems.add(MockViewActivity.class);
+
+
+        mItems.add(ViewTestActivity.class);
+        mItems.add(FragmentTestActivity.class);
+        mItems.add(TestActivity.class);
+        mItems.add(ChartActivity.class);
+//        mItems.add(MatrixActivity.class);
+        mItems.add(StateBarChartActivity.class);
+        mItems.add(MockViewActivity.class);
+
+
+        mItems.add(ViewTestActivity.class);
+        mItems.add(FragmentTestActivity.class);
+        mItems.add(TestActivity.class);
+        mItems.add(ChartActivity.class);
+//        mItems.add(MatrixActivity.class);
+        mItems.add(StateBarChartActivity.class);
+        mItems.add(MockViewActivity.class);
+
+        mItems.add(ViewTestActivity.class);
+        mItems.add(FragmentTestActivity.class);
+        mItems.add(TestActivity.class);
+        mItems.add(ChartActivity.class);
+//        mItems.add(MatrixActivity.class);
+        mItems.add(StateBarChartActivity.class);
+        mItems.add(MockViewActivity.class);
+        mItems.add(ViewTestActivity.class);
+        mItems.add(FragmentTestActivity.class);
+        mItems.add(TestActivity.class);
+        mItems.add(ChartActivity.class);
+//        mItems.add(MatrixActivity.class);
+        mItems.add(StateBarChartActivity.class);
+        mItems.add(MockViewActivity.class);
     }
+
+    private TextView mTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +97,60 @@ public class MainActivity extends SupportActivity {
         mAdapter = new ClassAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.scrollToPosition(20);
+
 
         long endTime = 1565798399999L;
         long startTime = 1514736000000L;
-        System.out.println("leizhiheng start time: " + FormatUtils.timeFormatWidthFormat(startTime, FormatUtils.YYYY_MM_DD_HH_MM));
-        System.out.println("leizhiheng end time: " + FormatUtils.timeFormatWidthFormat(endTime, FormatUtils.YYYY_MM_DD_HH_MM));
         preloadBackground();
+
+        mTv = findViewById(R.id.tv_height_test);
+
+
+        findViewById(R.id.text_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int textHeight = mTv.getHeight();
+                Paint.FontMetrics fontMetrics = mTv.getPaint().getFontMetrics();
+                int measureHeight = (int) (fontMetrics.bottom  - fontMetrics.top);
+                Log.d("zhiheng", "textHeight = " + textHeight + ", measuredheight = " + measureHeight + ", top = " + fontMetrics.top + ", bottom = " + fontMetrics.bottom);
+
+            }
+        });
+
+        Log.d("zhiheng", "num : " + Float.valueOf("10.01"));
+
+        Log.d("zhiheng", "Flag FLAG_ACTIVITY_NEW_TASK: " + Integer.toBinaryString(Intent.FLAG_ACTIVITY_NEW_TASK));
+        Log.d("zhiheng", "Flag FLAG_ACTIVITY_BROUGHT_TO_FRONT: " + Integer.toBinaryString(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
+        Log.d("zhiheng", "Flag FILL_IN_ACTION: " + Integer.toBinaryString(Intent.FILL_IN_ACTION));
+        Log.d("zhiheng", "Flag FLAG_ACTIVITY_CLEAR_TASK: " + Integer.toBinaryString(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        Log.d("zhiheng", "Flag FLAG_ACTIVITY_FORWARD_RESULT: " + Integer.toBinaryString(Intent.FLAG_ACTIVITY_FORWARD_RESULT));
+        Log.d("zhiheng", "Flag FILL_IN_DATA: " + Integer.toBinaryString(Intent.FILL_IN_DATA));
+        Log.d("zhiheng", "Flag FILL_IN_SELECTOR: " + Integer.toBinaryString(Intent.FILL_IN_SELECTOR));
+
+        Log.d("zhiheng", FormatUtils.timeFormatWidthFormat(FormatUtils.getCurrentWeekZeroTime(), FormatUtils.YYYY_MM_DD_HH_MM_SSS, null));
+
+        mTv.setBackgroundColor(-11125505);
+        parseRGB(-11125505);
+//        print("config = " + BuildConfig.config_key);
+
+        List<String> datas = new ArrayList<>();
+    }
+
+    private static void parseRGB(int colorInt) {
+        int red = (colorInt & 0xff0000) >> 16;
+        int green = (colorInt & 0x00ff00) >> 8;
+        int blue = (colorInt & 0x0000ff);
+
+        int color = (red << 16) | (green << 8) | blue;
+        int color2 = 0xff000000 | (red << 16) | (green << 8) | blue;
+        int color3 = Color.argb(255, red, green, blue);
+
+        print("parseRGB:  = "  + ", red = " + red + ", green = " + green + ", blue = " + blue + ", color = " + color + ", color2 = " + color2 + ", color3 = " + color3);
+    }
+
+    public static void print(String msg) {
+        Log.d("zhiheng", msg);
     }
 
     /**
@@ -94,7 +184,7 @@ public class MainActivity extends SupportActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ClassViewHolder holder, int position) {
-            holder.bind(mItems.get(position));
+            holder.bind(mItems.get(position), position);
         }
 
         @Override
@@ -112,9 +202,22 @@ public class MainActivity extends SupportActivity {
             tv = itemView.findViewById(android.R.id.text1);
         }
 
-        public void bind(final Class clazz) {
+        public void bind(final Class clazz, int position) {
             tv.setText(clazz.getSimpleName());
-            tv.setOnClickListener(view -> MainActivity.this.startActivity(new Intent(MainActivity.this, clazz)));
+            tv.setOnClickListener(view -> {
+
+                MainActivity.this.startActivity(new Intent(MainActivity.this, clazz));
+
+            });
         }
+    }
+
+    private void checkIntent(Context context, Intent intent) {
+        Log.d("zhiheng", "flag before: " + intent.getFlags() + ", binary : " + Integer.toBinaryString(intent.getFlags()));
+//        if (!(context instanceof Activity)) {
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            Log.d("zhiheng", "flag after: " + intent.getFlags() + ", binary : " + Integer.toBinaryString(intent.getFlags()));
+//        }
+        context.startActivity(intent);
     }
 }

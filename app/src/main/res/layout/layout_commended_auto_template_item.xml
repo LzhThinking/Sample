@@ -1,67 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="@dimen/px297"
-        android:layout_height="@dimen/px330"
-        android:src="@mipmap/recommend_auto_b"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="fitXY"/>
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/px15"
-        android:paddingRight="@dimen/px15"
-        android:layout_marginTop="@dimen/px10"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:text="Single press Wireless Mini Switch to turn on or off Smart Plug"/>
 
-    <TextView
-        android:id="@+id/tv_sub_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/px15"
-        android:paddingRight="@dimen/px15"
-        android:paddingBottom="@dimen/px30"
-        android:textSize="13sp"
-        android:textColor="@color/color_999999"
-        android:text="Single press Wireless Mini Switch to turn on or off Smart Plug"/>
-
-    <ImageView
-        android:id="@+id/image_view2"
-        android:layout_width="@dimen/px297"
-        android:layout_height="@dimen/px330"
-        android:paddingLeft="@dimen/px15"
-        android:paddingRight="@dimen/px15"
-        android:src="@mipmap/recommend_auto_b"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="fitXY"/>
-
-    <TextView
-        android:id="@+id/tv_title2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/px15"
-        android:paddingRight="@dimen/px15"
-        android:layout_marginTop="@dimen/px10"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:text="Single press Wireless Mini Switch to turn on or off Smart Plug"/>
-
-    <TextView
-        android:id="@+id/tv_sub_title2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/px15"
-        android:paddingRight="@dimen/px15"
-        android:paddingBottom="@dimen/px30"
-        android:textSize="13sp"
-        android:textColor="@color/color_999999"
-        android:text="Single press Wireless Mini Switch to turn on or off Smart Plug"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

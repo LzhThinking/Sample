@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:id="@+id/root_view"
     android:background="@color/pageBack">
+
+    <View
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:background="@color/color_5FA7FE"
+        android:layout_height="50dp"/>
 
     <LinearLayout
         android:id="@+id/radio_container"
@@ -13,15 +19,14 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center_horizontal"
-        app:layout_goneMarginTop="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:layout_below="@id/title_view">
 
         <com.lzh.sample.widgets.DatePeriodRadio
             android:id="@+id/date_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/px20"
+            android:background="@color/blue_35BDEB"
             app:radio_background="@drawable/selector_radio_bg"
             app:radio_count="2"
             app:radio_texts="@array/date_radio_text"
@@ -33,12 +38,26 @@
             app:radio_selected_color="@color/color_5fa7fe"/>
     </LinearLayout>
 
-
-    <View
-        android:id="@+id/view_scroll_shadow"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_shadow_height"
-        android:layout_below="@+id/radio_container"
-        android:visibility="gone"/>
+        android:layout_height="wrap_content"
+        android:background="@color/blue_fff2e7"
+        android:layout_below="@+id/radio_container">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:textSize="@dimen/px10"
+            android:gravity="center"
+            android:background="@color/blue_5AC7EC"
+            android:text="12345667890"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

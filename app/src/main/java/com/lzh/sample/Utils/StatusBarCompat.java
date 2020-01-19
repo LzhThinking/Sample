@@ -132,6 +132,40 @@ public class StatusBarCompat {
         }
     }
 
+
+    public static void setStatusBarIconStyle(Activity act, boolean isLight, boolean isShowNavigation) {
+        //1.setMIUISetStatusBarLightMode(act, isLight)小米5C（7.1.2）无效？？？官方demo都是一直白色的。 而且是V9版本>V6。。。
+        //再吐槽一句原来跳转页面icon亮暗色闪烁显示的bug是系统的锅。具体看手机自带设置的跳转效果。
+        //2.小米4（MIUI8，6.0.1）用Android默认方法设置是无效的，但是setMIUISetStatusBarLightMode 效果正常。。。
+        int flag;
+        if (!setMIUISetStatusBarLightMode(act, isLight)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (isLight) {
+                    flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                } else {
+                    flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                }
+                flag = isShowNavigation ? flag : (flag | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                act.getWindow().getDecorView().setSystemUiVisibility(flag);
+            } else {
+                setFlymeSetStatusBarLightMode(act, isLight, isShowNavigation);
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (isLight) {
+                    flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                } else {
+                    flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                }
+                flag = isShowNavigation ? flag : (flag | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                act.getWindow().getDecorView().setSystemUiVisibility(flag);
+            } else {
+                setFlymeSetStatusBarLightMode(act, isLight, isShowNavigation);
+            }
+        }
+
+    }
+
     public static void setStatusBarIconStyle(Activity act, boolean isLight) {
         //1.setMIUISetStatusBarLightMode(act, isLight)小米5C（7.1.2）无效？？？官方demo都是一直白色的。 而且是V9版本>V6。。。
         //再吐槽一句原来跳转页面icon亮暗色闪烁显示的bug是系统的锅。具体看手机自带设置的跳转效果。
@@ -172,6 +206,39 @@ public class StatusBarCompat {
         boolean result = false;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
+        if (activity != null) {
+            try {
+                WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+                Field darkFlag = WindowManager.LayoutParams.class
+                        .getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
+                Field meizuFlags = WindowManager.LayoutParams.class
+                        .getDeclaredField("meizuFlags");
+                darkFlag.setAccessible(true);
+                meizuFlags.setAccessible(true);
+                int bit = darkFlag.getInt(null);
+                int value = meizuFlags.getInt(lp);
+                if (isLight) {
+                    value |= bit;
+                } else {
+                    value &= ~bit;
+                }
+                meizuFlags.setInt(lp, value);
+                activity.getWindow().setAttributes(lp);
+                result = true;
+            } catch (Exception e) {
+
+            }
+        }
+        return result;
+    }
+
+    public static boolean setFlymeSetStatusBarLightMode(Activity activity, boolean isLight, boolean isShowNavigation) {
+        boolean result = false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int flag = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            flag = isShowNavigation ? flag : (flag | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            activity.getWindow().getDecorView().setSystemUiVisibility(flag);
         }
         if (activity != null) {
             try {

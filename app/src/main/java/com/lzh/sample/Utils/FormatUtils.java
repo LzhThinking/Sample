@@ -3,12 +3,14 @@ package com.lzh.sample.Utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
+import android.util.Log;
 
 
 import com.lzh.sample.R;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -237,6 +239,8 @@ public class FormatUtils {
     }
 
     private static Calendar tempCalendar;
+    private static Calendar tempTimeZoneCalendar;//如果要修改时区则使用这个，避免影响其他地方
+
     public static final String YYYY_MM_DD_HH_MM_SSS = "yyyy/MM/dd HH:mm:ss sss";
     public static final String YYYY_MM_DD_HH_MM = "yyyy/MM/dd HH:mm";
     public static final String HH_MM = "HH:mm";
@@ -444,14 +448,61 @@ public class FormatUtils {
      * @param format 时间格式
      * @return
      */
-    public static String timeFormatWidthFormat(long time, String format) {
-        simpleDateFormat.applyPattern(format);
-        if (null == tempCalendar) {
-            tempCalendar = Calendar.getInstance();
-        }
-        tempCalendar.setTimeInMillis(time);
+    public static String timeFormatWidthFormat(long time, String format, String zoneId) {
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+//        simpleDateFormat.applyPattern(format);
+//        if (null == tempCalendar) {
+//            tempCalendar = Calendar.getInstance();
+//        }
+//        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GTM+09"));
+//        tempCalendar.setTimeInMillis(time);
+//
+//
+//        return simpleDateFormat.format(tempCalendar.getTime());
 
-        return simpleDateFormat.format(tempCalendar.getTime());
+
+        SimpleDateFormat dff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        TimeZone timeZone = TimeZone.getTimeZone("GMT+10");
+        timeZone.setRawOffset(timeZone.getRawOffset() + (int) (0.5 * 60 * 60 * 1000));
+        dff.setTimeZone(getTimeZone(zoneId));
+
+        String ee = dff.format(time);
+
+        return ee;
+    }
+
+    /**
+     * 当zoneId带有小数点时直接getTimeZone()返回的时区不对
+     * @param zoneId 时区ID。如东八区zoneId为+8或者+08
+     * @return
+     */
+    public static TimeZone getTimeZone(String zoneId) {
+        if (zoneId == null) return TimeZone.getDefault();
+
+        if (!zoneId.contains(".")) {
+            return TimeZone.getTimeZone("GMT" + zoneId);
+        }
+
+        String[] idParts = zoneId.split("\\.");
+        TimeZone timeZone;
+        int hourMillis = 60 * 60 * 1000;
+
+        float part2;
+        try {
+            part2 = Float.valueOf("0." + idParts[1]);
+        } catch (Exception e) {
+            part2 = 0;
+        }
+
+        timeZone = TimeZone.getTimeZone("GMT" + idParts[0]);
+        if (idParts[0].startsWith("-")) {
+            timeZone.setRawOffset((int) (timeZone.getRawOffset() - part2 * hourMillis));
+        } else {
+            timeZone.setRawOffset((int) (timeZone.getRawOffset() + part2 * hourMillis));
+        }
+
+        return timeZone;
     }
 
     /**
@@ -610,15 +661,46 @@ public class FormatUtils {
             return gmt;
         }
     }
-
     /**
      * 获取本周日凌晨时间，如果获取周一则将1改为2
      * @return
      */
     public static long getCurrentWeekZeroTime() {
+        return getWeekZeroTimeByTime(new Date().getTime(), null);
+    }
+
+    /**
+     *
+     * @param time
+     * @param zoneId 时区ID。如东八区zoneId为+8或者+08
+     * @return
+     */
+    public static long getWeekZeroTimeByTime(long time, String zoneId) {
+        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeZone(TextUtils.isEmpty(zoneId) ? TimeZone.getDefault() : TimeZone.getTimeZone("GMT" + zoneId));
+        calendar.setTime(new Date(time));
+
+        calendar.set(Calendar.DAY_OF_WEEK, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        long zeroTime = calendar.getTimeInMillis();
+        if (zeroTime > time) {
+            zeroTime -= 7 * 24 * 60 * 60 * 1000;
+        }
+        return zeroTime;
+    }
+
+    /**
+     * 获取几年前的12/31 00:00:00 000的毫秒数
+     * @param beforeYears
+     * @return
+     */
+    public static long getBeforeYearsZeroTime(int beforeYears) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.set(Calendar.DAY_OF_WEEK, 1);
+        calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - beforeYears);
+        calendar.set(Calendar.DAY_OF_YEAR, 0);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
@@ -632,18 +714,40 @@ public class FormatUtils {
      * @return
      */
     public static long getCurrentDayZeroTime() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        Date zero = calendar.getTime();//这里的时间是前一天的23:59:000
+        return getDayZeroTimeByTime(new Date().getTime(), null);
+    }
+
+    public static long getDayZeroTimeByTime(long time, String zoneId) {
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeZone(TimeZone.getTimeZone("GMT+09"));
+//        calendar.setTime(new Date(time));
+//        calendar.set(Calendar.HOUR_OF_DAY, 0);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        Date zero = calendar.getTime();
+//        return zero.getTime();
+
+        if (null == tempTimeZoneCalendar) {
+            tempTimeZoneCalendar = Calendar.getInstance();
+        }
+        tempTimeZoneCalendar.setTimeZone(zoneId == null ? TimeZone.getDefault() : TimeZone.getTimeZone("GMT" + zoneId));
+        tempTimeZoneCalendar.setTime(new Date(time));
+        tempTimeZoneCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        tempTimeZoneCalendar.set(Calendar.MINUTE, 0);
+        tempTimeZoneCalendar.set(Calendar.SECOND, 0);
+        tempTimeZoneCalendar.set(Calendar.MILLISECOND, 0);
+        Date zero = tempTimeZoneCalendar.getTime();
         return zero.getTime();
     }
 
     public static long getCurrentTime() {
-        Date date = new Date();
-        return date.getTime();
+//        Date date = new Date();
+//        return date.getTime();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        Date zero = calendar.getTime();
+        return zero.getTime();
     }
 
     /**
@@ -673,6 +777,30 @@ public class FormatUtils {
                 second = time - hour * 3600 - minute * 60;
                 //timeStr = unitFormat(hour) + ":" + unitFormat(minute) + ":" + unitFormat(second);
                 timeStr = hour + context.getString(R.string.hour) + minute + context.getString(R.string.minutes) + second + context.getString(R.string.seconds);
+            }
+        }
+        return timeStr;
+    }
+
+    public static String time2HHlmmlss(Context context, int time) {
+        String timeStr;
+        int hour;
+        int minute;
+        int second;
+        if (time <= 0)
+            return "00:00";
+        else {
+            minute = time / 60;
+            if (minute < 60) {
+                second = time % 60;
+                timeStr = unitFormat(minute) + ":" + unitFormat(second);
+            } else {
+                hour = minute / 60;
+                if (hour > 99)
+                    return "99:59:59";
+                minute = minute % 60;
+                second = time - hour * 3600 - minute * 60;
+                timeStr = unitFormat(hour) + ":" + unitFormat(minute) + ":" + unitFormat(second);
             }
         }
         return timeStr;
