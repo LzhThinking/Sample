@@ -1,6 +1,8 @@
 package com.lzh.sample;
 
 import android.animation.ObjectAnimator;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,6 +13,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -31,21 +34,27 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifBitmapProvider;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.lzh.sample.Utils.ColorUtils;
+import com.lzh.sample.Utils.CommonPanelUtil;
 import com.lzh.sample.binder.IndicatorItemViewBinder;
 import com.lzh.sample.entity.IndicatroItemBean;
 import com.lzh.sample.viewtest.RemarkAdapter;
+import com.lzh.sample.widgets.ColorPickerView;
 import com.lzh.sample.widgets.CommonGridDecoration;
 import com.lzh.sample.widgets.CountDownView;
 import com.lzh.sample.widgets.DatePeriodRadio;
+import com.lzh.sample.widgets.HSBImageView;
 import com.lzh.sample.widgets.LottieButton;
 
 import java.util.ArrayList;
@@ -56,6 +65,8 @@ import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import me.drakeet.multitype.MultiTypeAdapter;
 
+import static android.text.Html.FROM_HTML_MODE_LEGACY;
+@Route(path = "/test/ViewTestActivity")
 public class ViewTestActivity extends AppCompatActivity {
 
     @BindView(R.id.button_1)
@@ -75,7 +86,6 @@ public class ViewTestActivity extends AppCompatActivity {
     public LinearLayout mRootView;
     @BindView(R.id.iv_bg)
     public ImageView mIvBg;
-    @BindView(R.id.list_view)
     public RecyclerView mRecyclerView;
     @BindView(R.id.lottie_button)
     LottieButton mLottieButton;
@@ -146,22 +156,17 @@ public class ViewTestActivity extends AppCompatActivity {
 ////            Toast.makeText(getApplicationContext(), "clickable", Toast.LENGTH_LONG).show();
 //            int textHeight = textView.getHeight();
 //            Paint.FontMetrics fontMetrics = textView.getPaint().getFontMetrics();
-//            int measureHeight = (int) (fontMetrics.bottom = fontMetrics.top);
-//            Log.d("zhiheng", "textHeight = " + textHeight + ", measuredheight = " + measureHeight + ", top = " + fontMetrics.top + ", bottom = " + fontMetrics.bottom);
-            int width = seekBar.getWidth();
-            int processDrawableWidth = seekBar.getProgressDrawable().getBounds().width();
-            int processWidth = processDrawableWidth - seekBar.getThumb().getBounds().width();
-            int leftPadding = seekBar.getPaddingLeft();
-            int rightPadding = seekBar.getPaddingRight();
-            Log.d("zhiheng", "seekBar width = " + width + ", processDrawableWidth = " + processDrawableWidth + ", processWidth = " + processWidth + ", leftPadding = " + leftPadding + ", rightPadding = " + rightPadding);
+//            int measureHeight = (int) (fontMetrics.bottom = fontMetrics.top);//            Log.d("zhiheng", "textHeight = " + textHeight + ", measuredheight = " + measureHeight + ", top = " + fontMetrics.top + ", bottom = " + fontMetrics.bottom);
+            Intent intent = new Intent();
+            ComponentName componentName = new ComponentName("com.example.sample", "com.example.sample.MainActivity");
+            intent.setComponent(componentName);
+            startActivity(intent);
+
         });
 
         radio.setOnRadioSelectedListener(index -> Toast.makeText(ViewTestActivity.this, "index = " + index, Toast.LENGTH_LONG).show());
 
         setChartSummarize();
-
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.transparent));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
         countDownView.setTotolTime(60);
         countDownView.setCurrentTime(20);
@@ -182,6 +187,61 @@ public class ViewTestActivity extends AppCompatActivity {
 
         bind();
 
+//        Hsb();
+
+        Log.d("zhiheng", "rgb = " + CommonPanelUtil.toRGBHexStr(0x01));
+
+        Log.d("zhihenghaha", "rgb = " + CommonPanelUtil.toRGBHexStr(255));
+
+
+        spanText();
+    }
+
+    private void spanText() {
+//        TextView textView = findViewById(R.id.text);
+//
+//        String str="默认颜色<font color='#FF0000'>红颜色</font>";
+//        textView.setTextSize(18);
+//        CharSequence s = Html.fromHtml(str, FROM_HTML_MODE_LEGACY);
+    }
+
+    public void Hsb() {
+        HSBImageView imageView = findViewById(R.id.shade);
+        imageView.setImageResource(R.drawable.ic_launcher_background);
+
+        ColorPickerView colorPickerView = findViewById(R.id.color_pick_view);
+        colorPickerView.setType(ColorPickerView.TYPE_COLOR_VALUE);
+        colorPickerView.setColorChangedListener(new ColorPickerView.OnColorChangedListener() {
+            @Override
+            public void onColorChanging(int colorValue) {
+                long xy = ColorUtils.convertRGB2Light_xy(colorValue);
+            }
+
+            @Override
+            public void onColorChanged() {
+
+            }
+
+            @Override
+            public void onTemperatureChanging(float rate, int tempColor) {
+
+            }
+
+            @Override
+            public void onTemperatureChanged() {
+
+            }
+
+            @Override
+            public void onBrightnessChanging(float openRate) {
+
+            }
+
+            @Override
+            public void onBrightnessChanged() {
+
+            }
+        });
     }
 
     public void RecommendedAutoItemViewHolder(View itemView) {
@@ -278,6 +338,7 @@ public class ViewTestActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mRecyclerView = findViewById(R.id.list_view);
         mItems = new ArrayList<>();
         mAdapter = new MultiTypeAdapter(mItems);
         mAdapter.register(IndicatroItemBean.class, new IndicatorItemViewBinder());
@@ -289,35 +350,42 @@ public class ViewTestActivity extends AppCompatActivity {
         String bgUrl = "http://img4q.duitang.com/uploads/item/201505/06/20150506202234_thzKj.jpeg";
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .error(R.drawable.home_bg)
+                .error(R.drawable.shape_profiles_round)
                 .priority(Priority.HIGH)
                 .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
-        Glide.with(mIvGif).load(R.mipmap.constant).into(mIvGif);
+        ImageView ivIcon = findViewById(R.id.iv_icon);
+//        ivIcon.setAlpha(0.1f);
 
-        if (bgUrl.startsWith("http://")) {
-            bgUrl = bgUrl.replace("http://", "https://");
-        }
-        Log.d("zhiheng", "setHomeBackground url = " + bgUrl);
-        Glide.with(mRootView.getContext()).load(TextUtils.isEmpty(bgUrl) ? R.drawable.home_bg : bgUrl)
-                .apply(options)
-                .into(new CustomViewTarget<View, Drawable>(mRootView) {
-                    @Override
-                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                        mRootView.setBackground(errorDrawable);
-                    }
-
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        mRootView.setBackground(resource);
-                    }
-
-                    @Override
-                    protected void onResourceCleared(@Nullable Drawable placeholder) {
-                        mRootView.setBackground(placeholder);
-                    }
-                });
+//        if (drawable instanceof GifDrawable) {
+//        }
+//        Glide.with(ivIcon).load("hahah ").apply(options).into(ivIcon);
+//
+//        Glide.with(mIvGif).load(R.mipmap.constant).into(mIvGif);
+//
+//        if (bgUrl.startsWith("http://")) {
+//            bgUrl = bgUrl.replace("http://", "https://");
+//        }
+//        Log.d("zhiheng", "setHomeBackground url = " + bgUrl);
+//        Glide.with(mRootView.getContext()).load(TextUtils.isEmpty(bgUrl) ? R.drawable.home_bg : bgUrl)
+//                .apply(options)
+//                .into(new CustomViewTarget<View, Drawable>(mRootView) {
+//                    @Override
+//                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+//                        mRootView.setBackground(errorDrawable);
+//                    }
+//
+//                    @Override
+//                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                        mRootView.setBackground(resource);
+//                    }
+//
+//                    @Override
+//                    protected void onResourceCleared(@Nullable Drawable placeholder) {
+//                        mRootView.setBackground(placeholder);
+//                    }
+//                });
     }
 
     private void getIndicatorBeans() {

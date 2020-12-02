@@ -1,11 +1,18 @@
 package com.lzh.sample;
 
-import android.text.TextUtils;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.lzh.sample.Utils.ColorUtils;
+import com.lzh.sample.Utils.CommonPanelUtil;
 import com.lzh.sample.Utils.FormatUtils;
+import com.lzh.sample.annotation.ClassAnn;
+import com.lzh.sample.entity.Entity;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -13,14 +20,18 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import io.reactivex.disposables.CompositeDisposable;
 
+@ClassAnn(typeName = "JavaTestName")
 public class JavaTest {
 
 
     private static CompositeDisposable disposable = new CompositeDisposable();
+
     public static void main(String args[]) {
         long milliSecOfDay = 7 * 24 * 60 * 60 * 1000;
         long dayZeroTime = FormatUtils.getCurrentTime();
@@ -111,7 +122,6 @@ public class JavaTest {
 //        print("===================================\n");
 
 
-
         print("放松: " + ColorUtils.convertRGB2Light_xy(16683309));
         print("休息: " + ColorUtils.convertRGB2Light_xy(5490429));
         print("电影: " + ColorUtils.convertRGB2Light_xy(16581038));
@@ -163,28 +173,97 @@ public class JavaTest {
 //        print("===================================\n");
 //        //0xFF201F    827C  ‭54B7‬
 ////        parseRGB(-4694785);
+//1050240632
+        color = 0x289CF6;
+        print("淡红 color beflor = " + color);
+        xy = ColorUtils.convertRGB2Light_xy(color);
+        print("xy = " + xy);
+        colorAfter = ColorUtils.convertLight_xy2RGB(xy, 1f);
+        print("淡红 color after = " + colorAfter);
+        print("===================================\n");
+
+
+        long xyNew = 2107338266L;
+        print("xy->rgb : " + CommonPanelUtil.toRGBHexStr(ColorUtils.convertLight_xy2RGB(xyNew, 1f)) + ", color = " + ColorUtils.convertLight_xy2RGB(xyNew, 1f));
+        print("xy->rgb : " + CommonPanelUtil.toRGBHexStr(ColorUtils.convertLight_xy2RGBTemp(xyNew, 1f)) + ", color = " + ColorUtils.convertLight_xy2RGBTemp(xyNew, 1f));
+
+//        xy = 1428656872L;
+//        print("rgb = " + ColorUtils.convertLight_xy2RGB(xy, 1f));
+//        print("rgbTemp = " + ColorUtils.convertLight_xy2RGBTemp(xy, 1f));
 //
-//        color = 0xFF9B00;
-//        print("淡红 color beflor = " + color);
-//        xy = ColorUtils.convertRGB2Light_xy(color);
-//        colorAfter = ColorUtils.convertLight_xy2RGBTemp(1917090766L, 1f);
-//        print("淡红 color after = " + colorAfter);
-//        print("===================================\n");
+//        String[] ids = new String[] {"1", "2"};
+//        print(JSON.toJSONString(ids));
+//        print(String.valueOf(4.499999f));
+//        float d = 123456.12345678f;
+//        float ff = (float) d;
+//        print("ff = " + d);
+//        print(Math.round(4.499999f) + "");
 
-//        String s = "{\n" +
-//                "\t\"hint\": {\n" +
-//                "\t\t\"default\": \"-\",\n" +
-//                "\t\t\"value\": \"${1.1.85}%\"\n" +
-//                "\t},\n" +
-//                "\t\"title\": {\n" +
-//                "\t\t\"default\": \"#{view_curtain_open_close\\\\:窗帘开合}\"\n" +
-//                "\t}\n" +
-//                "}";
-//        JSONObject object = JSON.parseObject(s);
+        float result = 2.0f;
+        int resultInt = 2;
+        boolean reslt = true;
 
-        String dataKeys = "$#{positionName1}ss${positionName2}}";
-        print(Arrays.toString(parseTextToDataKeys(dataKeys).toArray()));
+        String ss = "aaabbbbccc";
+        print("index : " + ss.indexOf("bb"));
+        long on = 6145;
+        long off = 268441601;
+        print("on: " + (on & 0xFFFFFFF));
+        print("off: " + ((1 & 1) << 28 | off & 0xFFFFFFF));
+
+
+//        ["00010000000000"]：取消行程
+//                ["00020001000000"]：极性反向
+//                ["00020000000000"]：极性正向
+//                ["00080000000000"]：启动手拉
+//                ["00080000000100"]：禁止手拉
+        //00010000000000000000000000000000000000000000
+        //00001111111100000000000000000000000000000000
+        long cf = 0x00020001000000L;
+        print("cf: " + ((cf & 0x0000FF00000000L) >> 32));
+        print("cf: " + (Integer.MAX_VALUE >> 2));
+
+        getList1(2, 5, 1);
+        getList2(2, 5, 1);
     }
+
+    public static void getList1(int minValue, int maxValue, int step) {
+        step = step == -1 ? 1 : step;
+        int curValue = maxValue;
+        while (curValue >= minValue) {
+            print("curValue = " + curValue);
+            curValue -= step;
+        }
+    }
+
+    public static void getList2(int minValue, int maxValue, int step) {
+
+        for (int i = maxValue; i >= minValue; i--) {
+            print("curValue = " + i);
+        }
+    }
+
+    public static String toJson(Object obj) {
+        return JSON.toJSONString(obj, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+
+    public static class User {
+        public String name;
+
+        public User(String name) {
+            this.name = name;
+        }
+    }
+
+    public static class Person {
+        public String id = "111";
+
+        public Drawable drawable;
+        @JSONField(serialize = false)
+        public List<User> users;
+
+    }
+
 
     public static List<String> parseTextToDataKeys(String text) {
         List<String> dataKeys = new ArrayList<>();
@@ -193,7 +272,7 @@ public class JavaTest {
         }
 
         String[] parts = text.split("\\$");
-        for (String part: parts) {
+        for (String part : parts) {
             if ((part != null) && part.contains("{") && part.contains("}")) {
                 int indexStart = part.indexOf("{");
                 int indexEnd = part.indexOf("}");
@@ -216,7 +295,7 @@ public class JavaTest {
     }
 
     private static void printNum(String num) {
-            print("num is numeric : " + isNumeric(num) + ", num: " + (isNumeric(num) ? Integer.valueOf(num) : "str_" + num));
+        print("num is numeric : " + isNumeric(num) + ", num: " + (isNumeric(num) ? Integer.valueOf(num) : "str_" + num));
     }
 
     public static boolean isNumeric(String str) {

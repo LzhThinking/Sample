@@ -9,4 +9,22 @@
         <attr name="min_process" format="integer"/>
         <attr name="max_process" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="HSBImageView">
+        <!--name：自定义属性名，format：自定义属性数据类型-->
+        <attr name="hueValue" format="float"></attr>
+        <attr name="saturationValue" format="float"></attr>
+        <attr name="brightnessValue" format="float"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="BubbleBgView">
+        <attr name="solidColor" format="color"/>
+        <attr name="shadowColor" format="color"/>
+        <attr name="shadowWidth" format="dimension"/>
+        <attr name="arrowWidth" format="dimension"/>
+        <attr name="arrowHeight" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="arrowDistanceLeft" format="dimension"/>
+        <attr name="arrowDistanceRight" format="dimension"/>
+    </declare-styleable>
 </resources>

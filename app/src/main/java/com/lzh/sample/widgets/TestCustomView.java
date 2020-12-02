@@ -3,15 +3,10 @@ package com.lzh.sample.widgets;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PathDashPathEffect;
-import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -22,7 +17,7 @@ import com.lzh.sample.R;
  * @CreateDate 2019/9/4
  * @Description
  */
-public class TestCustomView extends TextView {
+public class TestCustomView extends View {
 
     private Paint mPaint;
     private Path mPath = new Path();
@@ -42,7 +37,8 @@ public class TestCustomView extends TextView {
 
 
 
-        DashPathEffect dashPathEffect = new DashPathEffect(new float[]{20, 20, 20, 20, 0}, 0);
+
+
 //        mPaint.setPathEffect(dashPathEffect);
 //        PathDashPathEffect pathDashPathEffect = new PathDashPathEffect();
 
@@ -66,19 +62,34 @@ public class TestCustomView extends TextView {
 //        canvas.drawPath(mPath, mPaint);
 
 
-        //获取FontMetrics对象，可以获得top,bottom,ascent,descent
-        Paint.FontMetrics metrics = mPaint.getFontMetrics();
-        float top = metrics.top;
-        float ascent = metrics.ascent;
-        float descent = metrics.descent;
-        float bottom = metrics.bottom;
+//        //获取FontMetrics对象，可以获得top,bottom,ascent,descent
+//        Paint.FontMetrics metrics = mPaint.getFontMetrics();
+//        float top = metrics.top;
+//        float ascent = metrics.ascent;
+//        float descent = metrics.descent;
+//        float bottom = metrics.bottom;
+//
+//        int baseY = 300;
+//
+//        canvas.drawText("日月", 0, baseY, mPaint);
+//
+//        float y = baseY - ((bottom - top) - bottom * 2) / 2;
+//        canvas.drawLine(0, y, 200, y, mPaint);
 
-        int baseY = 300;
+        int x = 50;
+        int y = 50;
+        int radius = 50;
 
-        canvas.drawText("日月", 0, baseY, mPaint);
+        mPath.moveTo(x + radius, y);
+        mPath.lineTo(300, 50);
+        mPath.addArc(300f, 50f, 330f, 80f, 270f, 90f);
+        mPath.lineTo(330, 350);
+        mPath.lineTo(50, 350);
+        mPath.lineTo(50, 50);
 
-        float y = baseY - ((bottom - top) - bottom * 2) / 2;
-        canvas.drawLine(0, y, 200, y, mPaint);
+        mPaint.setShadowLayer(10, 0, 0, Color.GRAY);
+
+        canvas.drawPath(mPath, mPaint);
 
     }
 }

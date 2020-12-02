@@ -1,1 +1,3 @@
-include ':app', ':commonlib', ':kotlindemo', ':demo'
+include ':subModule'
+include ':jetpack'
+include ':app'

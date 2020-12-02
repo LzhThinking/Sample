@@ -1,7 +1,5 @@
 package com.lzh.sample.Utils;
 
-import android.graphics.Color;
-
 import java.util.HashMap;
 
 /**
@@ -21,18 +19,17 @@ public class ColorUtils {
 //    白色  500C  5439                ‭500D‬  ‭5439‬
 
     //预设情景
-    public static HashMap<Long, Float> sPreInstallProfiles = new HashMap<>();
+    public static HashMap<Long, Integer> sPreInstallProfiles = new HashMap<>();
     static {
         //RGBW预设情景
-        sPreInstallProfiles.put(2193910133L, 41.511093f);//放松
-        sPreInstallProfiles.put(932594195L, 49.31902f);//休息
-        sPreInstallProfiles.put(1810380207L, 23.960346f);//电影
-        sPreInstallProfiles.put(1920301991L, 71.92523f);//起床
+        sPreInstallProfiles.put(2193910133L, 0xFE912D);//放松
+        sPreInstallProfiles.put(932594195L, 0x53C6FD);//休息
+        sPreInstallProfiles.put(1810380207L, 0xFD01AE);//电影
+        sPreInstallProfiles.put(1920301991L, 0xFFDB01);//起床
     }
 
     public static float sPreY = -1f;
-    public static float sPrex = -1f;
-    public static float sPrey = -1f;
+    public static float sPreLightXy = -1f;
 
     /**
      * RGB转light_xy
@@ -40,15 +37,23 @@ public class ColorUtils {
      * @return
      */
     public static long convertRGB2Light_xy(int rgb) {
+        return convertRGB2Light_xy(rgb, true);
+    }
+
+    /**
+     *
+     * @param rgb
+     * @param isSaveY 是否保存Y值
+     * @return
+     */
+    public static long convertRGB2Light_xy(int rgb, boolean isSaveY) {
 
 
         float[] XYZ = RGB2XYZ(rgb);
         float[] xyY = XYZ2xyY(XYZ[0], XYZ[1], XYZ[2]);
 
-        sPrex = xyY[0];
-        sPrey = xyY[1];
-        sPreY = xyY[2];
-        savePreYxy();
+        sPreY = isSaveY ? xyY[2] : -1;
+
 
         print("convertRGB2Light_xy : fx = " + xyY[0] + ", fy = " + xyY[1] + ", Y = " + xyY[2]);
 
@@ -59,6 +64,9 @@ public class ColorUtils {
         print("convertRGB2Light_xy : x = " + x + ", y = " + y + ", Y = " + xyY[2]);
 
         long light_xy = (x << 16) | y;
+        sPreLightXy = light_xy;
+        savePreYxy();
+
         return light_xy;
     }
 
@@ -128,28 +136,22 @@ public class ColorUtils {
         float y = (light_xy & 0xffff) * 1.0f / 65535;
 
         if (sPreInstallProfiles.containsKey(light_xy)) {
-            sPreY = sPreInstallProfiles.get(light_xy);
-            sPrex = x;
-            sPrey = y;
+            return sPreInstallProfiles.get(light_xy);
         } else {
             checkPreYxy();
         }
-        if (Math.abs(x - sPrex) <= 0.01f && Math.abs(y - sPrey) <= 0.1f && sPreY > 0) {
+
+        if (light_xy == sPreLightXy && sPreY > 0) {
             float Y = sPreY;
 
             float[] XYZ = xyY2XYZ(x, y, Y);
             float[] RGB = XYZ2RGB(XYZ[0], XYZ[1], XYZ[2]);
 
-//            int red = (int) RGB[0];
-//            int green = (int) RGB[1];
-//            int blue = (int) RGB[2];
-//            return Color.argb(255, red, green, blue) & 0x00ffffff;
-            int colorRgb = 0xff000000 |
-                    ((int) (RGB[0]   * 255.0f + 0.5f) << 16) |
-                    ((int) (RGB[1] * 255.0f + 0.5f) <<  8) |
-                    (int) (RGB[2]  * 255.0f + 0.5f);
-
-            return colorRgb & 0x00ffffff;
+            int red = (int) RGB[0];
+            int green = (int) RGB[1];
+            int blue = (int) RGB[2];
+            //return Color.argb(255, red, green, blue) & 0x00ffffff;
+            return (red << 16 | green << 8 | blue ) & 0x00ffffff;
         } else {
             //如果不是之前RGB-Yxy转化过程中得到的x,y,Y，则使用这个方式转化成RGB，这个方式有误差，但是误差不至于太离谱
             return convertLight_xy2RGBTemp(light_xy, 1f);
@@ -228,30 +230,28 @@ public class ColorUtils {
     }
 
     /**
-     * light_xy转RGB
+     * light_xy转RGB， 如果没有Y值时使用这个方法。会有误差，但是误差比较小
      * @param light_xy
      * @return
      */
     public static int convertLight_xy2RGBTemp(long light_xy, float light) {
         float x = (light_xy >> 16 & 0xffff) * 1.0f / 65535;
         float y = (light_xy & 0xffff) * 1.0f / 65535;
-        float Y = 36f;
+        float Y = 255f;
 
         float[] XYZ = xyY2XYZTemp(x, y, Y);
         float[] RGB = XYZ2RGBTemp(XYZ[0], XYZ[1], XYZ[2]);
 
 //        int colorRgb = ((int)RGB[0] << 16) | ((int)RGB[1] <<8) | ((int)RGB[2]);
         int colorRgb = 0xff000000 |
-                ((int) (RGB[0]  + 0.5f) << 16) |
-                ((int) (RGB[1]  + 0.5f) <<  8) |
-                (int) (RGB[2]  + 0.5f);
+                ((int) (RGB[0]   * 255.0f + 0.5f) << 16) |
+                ((int) (RGB[1] * 255.0f + 0.5f) <<  8) |
+                (int) (RGB[2]  * 255.0f + 0.5f);
 
         return colorRgb & 0x00ffffff;
     }
 
     private static float[] xyY2XYZTemp(float fx, float fy, float fY) {
-
-        print("fx = " + fx + ", fy = " + fy + ", fY = " + fY);
         /* z = 1 - x - y */
         float fz = (float) (1.0 - fx - fy);
 
@@ -274,7 +274,6 @@ public class ColorUtils {
 
     private static float[] XYZ2RGBTemp(float fX, float fY, float fZ) {
 
-        print("fX = " + fX + ", fY = " + fY + ", fZ = " + fZ);
         float R, G, B, Max;
 
         fX = fX / 100f;
@@ -302,28 +301,25 @@ public class ColorUtils {
         float pfBlue = B;
 
         float[] RGB = new float[3];
-        RGB[0] = pfRed * 255;
-        RGB[1] = pfGreen * 255;
-        RGB[2] = pfBlue * 255;
-        print("R = " + RGB[0] + ", G = " + RGB[1] + ", B = " + RGB[2]);
+        RGB[0] = pfRed;
+        RGB[1] = pfGreen;
+        RGB[2] = pfBlue;
         return RGB;
     }
 
     private static void savePreYxy() {
 //        SPUtils.put(AppContext.get(), "preY", sPreY, SPUtils.COMMON_FILE_NAME);
-//        SPUtils.put(AppContext.get(), "prex", sPrex, SPUtils.COMMON_FILE_NAME);
-//        SPUtils.put(AppContext.get(), "prey", sPrey, SPUtils.COMMON_FILE_NAME);
+//        SPUtils.put(AppContext.get(), "preLight_xy", sPreLightXy, SPUtils.COMMON_FILE_NAME);
     }
 
     private static void checkPreYxy() {
-//        if (sPreY == -1 || sPrex == -1 || sPrey == -1) {
+        if (sPreY == -1 || sPreLightXy == -1) {
 //            sPreY = (float) SPUtils.get(AppContext.get(), "preY", -1f, SPUtils.COMMON_FILE_NAME);
-//            sPrex = (float) SPUtils.get(AppContext.get(), "prex", -1f, SPUtils.COMMON_FILE_NAME);
-//            sPrey = (float) SPUtils.get(AppContext.get(), "prey", -1f, SPUtils.COMMON_FILE_NAME);
-//        }
+//            sPreLightXy = (float) SPUtils.get(AppContext.get(), "preLight_xy", -1f, SPUtils.COMMON_FILE_NAME);
+        }
     }
 
     public static void print(String msg) {
-        System.out.println(msg);
+        //Log.d("zhiheng", msg);
     }
 }

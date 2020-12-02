@@ -2,21 +2,13 @@ package com.lzh.sample;
 
 import androidx.annotation.NonNull;
 
-import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Timer;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.CompletableObserver;
-import io.reactivex.MaybeObserver;
-import io.reactivex.Notification;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -24,9 +16,7 @@ import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
-import io.reactivex.SingleObserver;
 import io.reactivex.SingleOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -35,10 +25,6 @@ import io.reactivex.functions.BooleanSupplier;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
-import io.reactivex.internal.observers.EmptyCompletableObserver;
-import io.reactivex.internal.operators.observable.BlockingObservableIterable;
-import io.reactivex.internal.operators.observable.ObservableFromCallable;
-import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.observables.GroupedObservable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.schedulers.Timed;
@@ -57,7 +43,18 @@ public class RxJavaT {
 //        connect();
 //        stringObservable();
 
-        flatMap();
+//        flatMap();
+
+//        stringObservable();
+
+//        groupBy();
+
+
+//        flatMap();
+
+        zip();
+        concat();
+        merge();
 
         try {
             Thread.sleep(10000);
@@ -66,42 +63,164 @@ public class RxJavaT {
         }
     }
 
-    static Integer[] items = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14};
-    private static int count;
-    private static CompositeDisposable disposable = new CompositeDisposable();
+    static String[][] arrays = new String[3][3];
+    static {
+        arrays[0] = (new String[] {"1", "11", "111"});
+        arrays[1] = (new String[] {"2", "22", "222"});
+        arrays[2] = (new String[] {"3", "33", "333"});
+    }
 
-    public static void stringObservable() {
+    public static void concat() {
+        StringBuffer buffer = new StringBuffer();
+        Observable.concat(Observable.just(1, 23, 465), Observable.just(789, 987, 666))
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(@NonNull Integer integer) throws Exception {
+                        println((integer + "--->"));
+                    }
+                });
+    }
 
+    public static void zip() {
+        Observable.zip(Observable.just(1, 2, 3), Observable.just(4, 5, 6, 7), new BiFunction<Integer, Integer, String>() {
+            @Override
+            public String apply(Integer integer, Integer integer2) throws Exception {
+                return "integer 1 = " + integer + ", integer 2 = " + integer2;
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                println("zip: " + s);
+            }
+        });
+    }
+
+    public static void merge() {
+        Observable.merge(Observable.just(1, 2, 7, 8), Observable.just(3, 4, 5)).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(@NonNull Integer integer) throws Exception {
+                println("merge :" + integer + "\n");
+            }
+        });
     }
 
     public static void flatMap() {
-        Observable observable = Observable.create(new ObservableOnSubscribe<String>() {
+        Observable.fromArray(Objects.requireNonNull(arrays)).flatMap(new Function<String[], ObservableSource<String>>() {
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                println("flatMap create");
+            public ObservableSource<String> apply(String[] o) throws Exception {
+                return Observable.fromArray(o);
             }
-        }).flatMap(new Function<String, ObservableSource<?>>() {
+        }).subscribe(new Consumer<String>() {
             @Override
-            public ObservableSource<?> apply(String s) throws Exception {
-                println("flatMap flatMap");
-                return Observable.create(new ObservableOnSubscribe<String>() {
+            public void accept(String s) throws Exception {
+                println("flatmat result = " + s);
+            }
+        });
+    }
+
+    public static void groupBy() {
+        Observable.fromArray(items).groupBy(new Function<Integer, Object>() {
+            @Override
+            public Object apply(Integer integer) throws Exception {
+                return integer % 2;
+            }
+        }).subscribe(new Consumer<GroupedObservable<Object, Integer>>() {
+            @Override
+            public void accept(GroupedObservable<Object, Integer> objectIntegerGroupedObservable) throws Exception {
+                objectIntegerGroupedObservable.subscribe(new Consumer<Integer>() {
                     @Override
-                    public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                        println("flatMap flatMap new ");
+                    public void accept(Integer integer) throws Exception {
+                        println("key : " + objectIntegerGroupedObservable.getKey() + ", value = " + integer);
                     }
                 });
             }
         });
 
-        observable.subscribe(new Observer() {
+        Observable.fromArray(items).map(new Function<Integer, String>() {
+            @Override
+            public String apply(Integer integer) throws Exception {
+                return "item-" + integer;
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                println("map result : " + s);
+            }
+        });
+    }
+
+    static Integer[] items = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 14};
+    private static int count;
+    private static CompositeDisposable disposable = new CompositeDisposable();
+
+    static int index = 0;
+    public static void stringObservable() {
+
+//        Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+//                emitter.onNext(++index);
+//                emitter.onNext(++index);
+//                if (index < 10) {
+//                    emitter.onError(new NullPointerException());
+//                }
+//            }
+//        }).retryWhen(new Function<Observable<Throwable>, ObservableSource<?>>() {
+//            @Override
+//            public ObservableSource<?> apply(Observable<Throwable> throwableObservable) throws Exception {
+////                return throwableObservable.flatMap(new Function<Throwable, ObservableSource<?>>() {
+////                    @Override
+////                    public ObservableSource<?> apply(Throwable throwable) throws Exception {
+////                        if (throwable instanceof NullPointerException) {
+////                            return Observable.just(1);
+////                        } else {
+////                            return null;
+////                        }
+////                    }
+////                });
+//                return throwableObservable.delay(0, TimeUnit.SECONDS);
+//            }
+//        }).subscribe(new Consumer<Integer>() {
+//            @Override
+//            public void accept(Integer integer) throws Exception {
+//                println("retry accept : " + integer);
+//            }
+//        }, new Consumer<Throwable>() {
+//            @Override
+//            public void accept(Throwable throwable) throws Exception {
+//                println("retry accept error : " + throwable.getMessage());
+//            }
+//        });
+
+        index = 0;
+        Observable<Integer> repeat = Observable.just(1, 2, 3)
+                .repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(Observable<Object> objectObservable) throws Exception {
+                        return objectObservable.flatMap(new Function<Object, ObservableSource<?>>() {
+                            @Override
+                            public ObservableSource<?> apply(Object o) throws Exception {
+                                int n = (int) o;
+                                index ++;
+                                println("n = " + n + ", index = " + index + ", object = " + o);
+                                if (index < 3) {
+                                    return Observable.just(0);
+                                } else {
+                                    return null;
+                                }
+                            }
+                        });
+                    }
+                });
+        repeat.subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(Object o) {
-
+            public void onNext(Integer integer) {
+                println("onNext integer = " + integer);
             }
 
             @Override
@@ -111,7 +230,7 @@ public class RxJavaT {
 
             @Override
             public void onComplete() {
-                println("flatMap onComplete");
+
             }
         });
     }

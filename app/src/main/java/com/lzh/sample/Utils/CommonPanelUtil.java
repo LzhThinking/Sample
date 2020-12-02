@@ -112,7 +112,7 @@ public class CommonPanelUtil {
      * @return
      */
     public static String toRGBHexStr(int color) {
-        return Integer.toHexString(Math.abs(color) & 0x00ffffff);
+        return Integer.toHexString(color | 0xff000000).substring(2);
     }
 
     /**
@@ -121,7 +121,7 @@ public class CommonPanelUtil {
      * @return
      */
     public static float get2DecimalNum(float num) {
-        return Math.round(num * 100) / 100f;
+        return Math.round(num * 100) / 100;
     }
 
     public static int parseColor(int color) {

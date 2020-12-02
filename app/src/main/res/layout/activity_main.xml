@@ -22,6 +22,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view"/>
 
+    <include
+        android:id="@+id/layout_item"
+        layout="@layout/item_layout_of_life_helper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_height_test" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
         android:layout_width="0dp"
@@ -30,7 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_height_test">
+        app:layout_constraintTop_toBottomOf="@+id/layout_item">
     </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

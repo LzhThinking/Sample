@@ -24,6 +24,12 @@ import java.util.regex.Pattern;
  */
 public class FormatUtils {
 
+    public int demoInt = 0;
+    public int getDemoInt() {
+        System.out.println("getDemoint");
+        return demoInt;
+    }
+
     public static final int CURRENT = 0;
     public static final int DAY = 1;
     public static final int MONTH = 2;

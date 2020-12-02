@@ -8,10 +8,35 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/text_1"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="竖屏"/>
+        android:background="@color/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="竖屏ddddddddddddd"/>
+
+    <TextView
+        android:id="@+id/text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/color_3ba8ff"
+        app:layout_constraintLeft_toRightOf="@+id/text_1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constrainedWidth="true"
+        android:gravity="center"
+        android:text="竖屏 ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/color_6C98FD"-->
+<!--        android:gravity="center"-->
+<!--        app:layout_constraintLeft_toRightOf="@+id/text_2"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintHorizontal_weight="1"-->
+<!--        android:text="竖屏ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -26,6 +28,7 @@ import android.view.View;
 
 import com.lzh.sample.R;
 import com.lzh.sample.Utils.BitmapUtils;
+import com.lzh.sample.Utils.ColorUtils;
 import com.lzh.sample.Utils.CommonPanelUtil;
 
 import java.io.InputStream;
@@ -214,7 +217,9 @@ public class ColorPickerView extends View {
         temperatureBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.light_color_temp);
         mTemperaturePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         //色值
-        rgbBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.light_rgb);
+        Drawable drawableRgb = getResources().getDrawable(R.mipmap.light_rgb);
+        setHSB(drawableRgb, 0f, 0f, 0f);
+        rgbBitmap = BitmapUtils.drawableToBitmap(drawableRgb);
         mRgbPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         //关闭时的灰色蒙版
         mGrayPaint = new Paint(Paint.ANTI_ALIAS_FLAG); // 抗锯齿
@@ -258,6 +263,7 @@ public class ColorPickerView extends View {
         //画色圆(色温圆)， r是半径
         if (mType == TYPE_COLOR_VALUE || mType == TYPE_LIGHT_VALUE_ONLY) {
             drawRgbCircle(canvas);
+
         } else if (mType == TYPE_COLOR_TEMP || mType == TYPE_LIGHT_TEMP_ONLY) {
             drawTemperatureCircle(canvas);
         }
@@ -280,6 +286,48 @@ public class ColorPickerView extends View {
 //        drawPointerCenter(canvas);
         super.onDraw(canvas);
     }
+
+
+    private static ColorMatrix colorMatrix = new ColorMatrix();
+    /**
+     * 色调，改变颜色
+     */
+    private static ColorMatrix hueMatrix = new ColorMatrix();
+    /**
+     * 饱和度，改变颜色的纯度
+     */
+    private static ColorMatrix saturationMatrix = new ColorMatrix();
+    /**
+     * 亮度，控制明暗
+     */
+    private static ColorMatrix brightnessMatrix = new ColorMatrix();
+    private void setHSB(Drawable drawable, float hueValue, float saturationValue, float brightnessValue) {
+        hueValue = 360f;
+        saturationValue = 1.1f;
+        brightnessValue = 1.0f;
+        //设置色相，为0°和360的时候相当于原图
+        hueMatrix.reset();
+        hueMatrix.setRotate(0, hueValue);
+        hueMatrix.setRotate(1, hueValue);
+        hueMatrix.setRotate(2, hueValue);
+
+        //设置饱和度，为1的时候相当于原图
+        saturationMatrix.reset();
+        saturationMatrix.setSaturation(saturationValue);
+
+        //亮度，为1的时候相当于原图
+        brightnessMatrix.reset();
+        brightnessMatrix.setScale(brightnessValue, brightnessValue, brightnessValue, 1);
+
+        //将上面三种效果和选中的模式混合在一起
+        colorMatrix.reset();
+        colorMatrix.postConcat(hueMatrix);
+        colorMatrix.postConcat(saturationMatrix);
+        colorMatrix.postConcat(brightnessMatrix);
+
+        drawable.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+    }
+
     private void doCalculate() {
         if (mType == TYPE_LIGHT_TEMP_ONLY || mType == TYPE_COLOR_TEMP) {
             int radius = (int) (mPanelRadius - clickPointRadius);

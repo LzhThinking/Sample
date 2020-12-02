@@ -1,13 +1,11 @@
 package com.lzh.sample;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,31 +13,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.github.mikephil.charting.utils.Utils;
 import com.lzh.sample.Utils.FormatUtils;
-import com.lzh.sample.matrix.MatrixActivity;
 import com.lzh.sample.mpandroidchart.ChartActivity;
 import com.lzh.sample.mpandroidchart.custombarchart.StateBarChartActivity;
+import com.lzh.submodule.SubModuleMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import me.yokeyword.fragmentation.SupportActivity;
 
 
 public class MainActivity extends SupportActivity {
 
-    @BindView(R.id.list_view)
     public RecyclerView mRecyclerView;
+
     private RecyclerView.Adapter mAdapter;
     private static List<Class> mItems = new ArrayList<>();
 
@@ -52,38 +53,6 @@ public class MainActivity extends SupportActivity {
         mItems.add(StateBarChartActivity.class);
         mItems.add(MockViewActivity.class);
 
-
-        mItems.add(ViewTestActivity.class);
-        mItems.add(FragmentTestActivity.class);
-        mItems.add(TestActivity.class);
-        mItems.add(ChartActivity.class);
-//        mItems.add(MatrixActivity.class);
-        mItems.add(StateBarChartActivity.class);
-        mItems.add(MockViewActivity.class);
-
-
-        mItems.add(ViewTestActivity.class);
-        mItems.add(FragmentTestActivity.class);
-        mItems.add(TestActivity.class);
-        mItems.add(ChartActivity.class);
-//        mItems.add(MatrixActivity.class);
-        mItems.add(StateBarChartActivity.class);
-        mItems.add(MockViewActivity.class);
-
-        mItems.add(ViewTestActivity.class);
-        mItems.add(FragmentTestActivity.class);
-        mItems.add(TestActivity.class);
-        mItems.add(ChartActivity.class);
-//        mItems.add(MatrixActivity.class);
-        mItems.add(StateBarChartActivity.class);
-        mItems.add(MockViewActivity.class);
-        mItems.add(ViewTestActivity.class);
-        mItems.add(FragmentTestActivity.class);
-        mItems.add(TestActivity.class);
-        mItems.add(ChartActivity.class);
-//        mItems.add(MatrixActivity.class);
-        mItems.add(StateBarChartActivity.class);
-        mItems.add(MockViewActivity.class);
     }
 
     private TextView mTv;
@@ -94,6 +63,7 @@ public class MainActivity extends SupportActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        mRecyclerView = findViewById(R.id.list_view);
         mAdapter = new ClassAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -110,11 +80,14 @@ public class MainActivity extends SupportActivity {
         findViewById(R.id.text_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int textHeight = mTv.getHeight();
-                Paint.FontMetrics fontMetrics = mTv.getPaint().getFontMetrics();
-                int measureHeight = (int) (fontMetrics.bottom  - fontMetrics.top);
-                Log.d("zhiheng", "textHeight = " + textHeight + ", measuredheight = " + measureHeight + ", top = " + fontMetrics.top + ", bottom = " + fontMetrics.bottom);
-
+//                int textHeight = mTv.getHeight();
+//                Paint.FontMetrics fontMetrics = mTv.getPaint().getFontMetrics();
+//                int measureHeight = (int) (fontMetrics.bottom  - fontMetrics.top);
+//                Log.d("zhiheng", "textHeight = " + textHeight + ", measuredheight = " + measureHeight + ", top = " + fontMetrics.top + ", bottom = " + fontMetrics.bottom);
+//                ARouter.getInstance().build("/test/testActivity").navigation();
+                ARouter.getInstance().build("/sub/MainActivity").navigation();
+//                Intent intent = new Intent(MainActivity.this, SubModuleMainActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -132,10 +105,21 @@ public class MainActivity extends SupportActivity {
 
         mTv.setBackgroundColor(-11125505);
         parseRGB(-11125505);
-//        print("config = " + BuildConfig.config_key);
 
         List<String> datas = new ArrayList<>();
+
+        rxJava();
     }
+
+    private static void rxJava() {
+        Observable.interval(2, TimeUnit.SECONDS).onTerminateDetach().observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                Log.d("zhiheng", "aLong = " + aLong);
+            }
+        });
+    }
+
 
     private static void parseRGB(int colorInt) {
         int red = (colorInt & 0xff0000) >> 16;
